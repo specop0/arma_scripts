@@ -13,3 +13,15 @@ ammoBox.sqf:
 
 spawn_vehicle.sqf
 1) spawn vehicle at defined marker (if no vehicle of same type nearby)
+
+spec_cache:
+simple caching script for infantry
+1) spawn groups in editor and set waypoints
+2) add in init field: [this, numberOfGroup ] call Spec_fnc_cacheGroup;
+3) to spawn unit call (e.g. in trigger): numberOfGroup call Spec_fnc_spawnGroup;
+numberOfGroup is unique (otherwise error is shown)
+
+example mission:
+- see error that vehicle with crew can not be cached
+- go near offroad to spawn patrolling team
+- go to nearest armored vehicle to spawn crew at furthest armored vehicle (gets in and drives off)

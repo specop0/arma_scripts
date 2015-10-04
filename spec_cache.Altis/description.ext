@@ -1,0 +1,23 @@
+class CfgFunctions {
+#include "spec_cache\CfgFunctions.hpp"
+};
+
+
+class Header
+{
+	gameType = "coop";
+	minPlayers = "1";
+	maxPlayers = "15";
+};
+
+respawn = BASE;
+respawnDelay = 5;
+respawnDialog = false;
+
+onLoadMission = "Spec Cache Test";
+OnLoadMissionTime = TRUE;
+author="Spec";
+OnLoadName = "OP Spec Cache Test";
+
+overviewText = "";
+overviewPicture = "";
