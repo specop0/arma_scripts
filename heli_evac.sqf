@@ -39,7 +39,7 @@ if(isNull _caller) then {
 		_nearestHelis = nearestObjects [_heliSpawn,[_heliType],200];
 		_nearestHelisAlive = 0;
 		{
-			if (getDammage _x <= 0.5) then {
+			if (damage _x <= 0.5) then {
 				_nearestHelisAlive = _nearestHelisAlive + 1;
 			};
 		} foreach _nearestHelis;
