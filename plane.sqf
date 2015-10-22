@@ -1,23 +1,23 @@
 comment "Edit these Entries";
-_parameterCorrect = params [["_airplane",objNull,[objNull]]];
+local _parameterCorrect = params [["_airplane",objNull,[objNull]]];
 
 comment "Name of Marker for Waypoints";
-_markerNameWaypoints = ["wp1","wp2"];
+local _markerNameWaypoints = ["wp1","wp2"];
 
-_pilotType = "B_Pilot_F";
+local _pilotType = "B_Pilot_F";
 
 comment "Some other Parameters";
-_radiusOfUnitsToLoad = 50;
-_sleepTime = 10;
-_flightHeight = 500;
+local _radiusOfUnitsToLoad = 50;
+local _sleepTime = 10;
+local _flightHeight = 500;
 
 comment "Script start";
 if(_parameterCorrect) then {
 
-	_waypointsParseError = false;
-	_waypointsPositions = [];
+	local _waypointsParseError = false;
+	local _waypointsPositions = [];
 	{
-		_pos = getMarkerPos _x;
+		local _pos = getMarkerPos _x;
 		_waypointsPositions pushBack _pos;
 		if(_pos select 0 == 0 && _pos select 1 == 0) then {
 			_waypointsParseError = true;
@@ -26,6 +26,8 @@ if(_parameterCorrect) then {
 	} foreach _markerNameWaypoints;
 
 	if(!_waypointsParseError) then {
+		local _bluforOutside = 0;
+		local _unitsOutside = [];
 		waitUntil {
 			sleep _sleepTime;
 			_bluforOutside = 0;
@@ -37,14 +39,15 @@ if(_parameterCorrect) then {
 			} foreach _unitsOutside;
 			_bluforOutside <= 0
 		};
-		_groupAirplane = createGroup WEST;
-		_pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
+		local _groupAirplane = createGroup WEST;
+		local _pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
 		_pilot moveInCargo _airplane;
 		_pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
 		_pilot moveInTurret [_airplane, [0]];
-		_wp = _groupAirplane addWaypoint [getPos _airplane, count (waypoints _groupAirplane)];
+		local _wp = _groupAirplane addWaypoint [getPos _airplane, count (waypoints _groupAirplane)];
 		_wp setWaypointType "GETIN NEAREST";
-		_flyInHeightStr = format ["%1 flyInHeight %2;", _airplane, _flightHeight];
+		local _flyInHeightStr = format ["%1 flyInHeight %2;", _airplane, _flightHeight];
+		local _i = 0;
 		{
 			_i = count (waypoints _groupAirplane);
 			_wp = _groupAirplane addWaypoint [_x, _i];
@@ -53,6 +56,6 @@ if(_parameterCorrect) then {
 		} foreach _waypointsPositions
 	};
 } else {
-	hint "Scrip Error: Wrong Input parameter, expected airplane";
+	hint "Script Error: Wrong Input parameter, expected airplane";
 };
 	

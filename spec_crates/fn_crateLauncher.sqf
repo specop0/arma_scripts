@@ -1,8 +1,8 @@
-_parameterCorrect = params [["_x",objNull,[objNull]]];
+local _parameterCorrect = params [["_x",objNull,[objNull]]];
 
-_atLauncher = "UK3CB_BAF_AT4_AT_Launcher";
-_aaLauncher = "rhs_weap_fim92";
-_aaAmmo = "rhs_fim92_mag";
+local _atLauncher = "UK3CB_BAF_AT4_AT_Launcher";
+local _aaLauncher = "rhs_weap_fim92";
+local _aaAmmo = "rhs_fim92_mag";
 
 if(_parameterCorrect) then {
 	clearWeaponCargoGlobal _x;

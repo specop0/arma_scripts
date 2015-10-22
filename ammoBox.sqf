@@ -1,66 +1,66 @@
-_ammoBoxType = "B_supplyCrate_F";
-_parachuteType = "B_Parachute_02_F";
+local _ammoBoxType = "B_supplyCrate_F";
+local _parachuteType = "B_Parachute_02_F";
 
-_enemyPatLeaderType = "LOP_NAPA_Infantry_TL";
-_enemyPatSoldierAtype = "LOP_NAPA_Infantry_Rifleman";
-_enemyPatSoldierBtype = "LOP_NAPA_Infantry_AT";
-_enemyPatSide = RESISTANCE;
-_enemyPatCycleRadius = 125 + random 100;
-_spawnedAmmoBoxHeight = 500;
-_enemyPatSpawnDistance = 500;
+local _enemyPatLeaderType = "LOP_NAPA_Infantry_TL";
+local _enemyPatSoldierAtype = "LOP_NAPA_Infantry_Rifleman";
+local _enemyPatSoldierBtype = "LOP_NAPA_Infantry_AT";
+local _enemyPatSide = RESISTANCE;
+local _enemyPatCycleRadius = 125 + random 100;
+local _spawnedAmmoBoxHeight = 500;
+local _enemyPatSpawnDistance = 500;
 
-_hintAmmoBoxSpawned = "Die Versorgungskiste wurde ueber Ihnen abgeworfen.\nPassen Sie auf, dass der Feind diese nicht entdeckt!";
-_hintAmmoBoxAbovePlayer = "Eine Versorgungskiste ist bereits auf dem Weg. Gucken Sie nach oben in die Luft oder warten Sie ein Augenblick und rufen sie eine Weitere.";
+local _hintAmmoBoxSpawned = "Die Versorgungskiste wurde ueber Ihnen abgeworfen.\nPassen Sie auf, dass der Feind diese nicht entdeckt!";
+local _hintAmmoBoxAbovePlayer = "Eine Versorgungskiste ist bereits auf dem Weg. Gucken Sie nach oben in die Luft oder warten Sie ein Augenblick und rufen sie eine Weitere.";
 
-params ["",["_caller",objNull]];
+local _parameterCorrect = params ["",["_caller",objNull]];
 
-if(!isNull _caller) then {
+if(_parameterCorrect) then {
 	comment "check if ammo box already spawned";
-	_spawnPosition = getPosATL _caller;
-	_spawnPositionHeight = (_spawnPosition select 2) + _spawnedAmmoBoxHeight;
+	local _spawnPosition = getPosATL _caller;
+	local _spawnPositionHeight = (_spawnPosition select 2) + _spawnedAmmoBoxHeight;
 	_spawnPosition set [2, _spawnPositionHeight];
 	
-	_nearestAmmobox = nearestObjects [_spawnPosition,[_ammoBoxType],30];
+	local _nearestAmmobox = nearestObjects [_spawnPosition,[_ammoBoxType],30];
 	if(count _nearestAmmobox > 0) then {
 		hint _hintAmmoBoxAbovePlayer;
 	} else {
 	
 		comment "spawn ammo box with parachute at player position";
-		_spawnedAmmoBox = createVehicle [_ammoBoxType,_spawnPosition, [],0,""];
-		_parachute =  createVehicle [_parachuteType,_spawnPosition, [], 0, "NONE"];
+		local _spawnedAmmoBox = createVehicle [_ammoBoxType,_spawnPosition, [],0,""];
+		local _parachute =  createVehicle [_parachuteType,_spawnPosition, [], 0, "NONE"];
 		_spawnedAmmoBox attachTo [_parachute, [0,0,1]];
 		
 		comment "spawn enemy patrol near player";
-		_patGroup = createGroup _enemyPatSide;
-		_angle = (random 360);
+		local _patGroup = createGroup _enemyPatSide;
+		local _angle = (random 360);
 
-		_enemySpawnPos = _caller modelToWorld [sin(_angle)*_enemyPatSpawnDistance,cos(_angle)*_enemyPatSpawnDistance,0];
-		_enemySpawnMarker = createMarkerLocal ["AmmoBoxSpawnerMarker#", [_enemySpawnPos select 0, _enemySpawnPos select 1]];
+		local _enemySpawnPos = _caller modelToWorld [sin(_angle)*_enemyPatSpawnDistance,cos(_angle)*_enemyPatSpawnDistance,0];
+		local _enemySpawnMarker = createMarkerLocal ["AmmoBoxSpawnerMarker#", [_enemySpawnPos select 0, _enemySpawnPos select 1]];
 		_enemySpawnMarker = "AmmoBoxSpawnerMarker#";
 		_enemySpawnMarker setMarkerPos [_enemySpawnPos select 0, _enemySpawnPos select 1];
 
-		_enemyPatLeader = _patGroup createUnit [_enemyPatLeaderType, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
+		local _enemyPatLeader = _patGroup createUnit [_enemyPatLeaderType, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
 		[_enemyPatLeader] join _patGroup;
-		_enemyPatSoldierA = _patGroup createUnit [_enemyPatSoldierAtype, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
+		local _enemyPatSoldierA = _patGroup createUnit [_enemyPatSoldierAtype, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
 		[_enemyPatSoldierA] join _patGroup;
-		_enemyPatSoldierB = _patGroup createUnit [_enemyPatSoldierBtype, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
+		local _enemyPatSoldierB = _patGroup createUnit [_enemyPatSoldierBtype, getMarkerPos _enemySpawnMarker, [], 25, "FORM"];
 		[_enemyPatSoldierB] join _patGroup;
 
-		_wp0 = _patGroup addWaypoint [_pos,0];
+		local _wp0 = _patGroup addWaypoint [_pos,0];
 		_wp0 setWaypointType "MOVE";
 		_wp0 setWaypointSpeed "FULL";
 
-		_tempAngle = 41 + random 10;
-		_wp1 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],1];
+		local _tempAngle = 41 + random 10;
+		local _wp1 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],1];
 		_wp1 setWaypointSpeed "NORMAL";
 		_tempAngle = 131 + random 10;
-		_wp2 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],2];
+		local _wp2 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],2];
 		_tempAngle = 221 + random 10;
-		_wp3 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],3];
+		local _wp3 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],3];
 		_tempAngle = 311 + random 10;
-		_wp4 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],4];
+		local _wp4 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],4];
 		_tempAngle = 45;
-		_wp5 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],5];
+		local _wp5 = _patGroup addWaypoint [_caller modelToWorld [sin(_tempAngle)*_enemyPatCycleRadius,cos(_tempAngle)*_enemyPatCycleRadius,0],5];
 		_wp5 setWaypointType "CYCLE";
 		
 		comment "set ammo content here";
@@ -84,6 +84,7 @@ if(!isNull _caller) then {
 		_spawnedAmmoBox addItemCargoGlobal ["ACE_epinephrine",10];
 		_spawnedAmmoBox addItemCargoGlobal ["ACE_morphine",10];
 		_spawnedAmmoBox addItemCargoGlobal ["ACE_atropine",5];
+		_spawnedAmmoBox addItemCargoGlobal ["ACE_surgicalKit",2];
 
 		_spawnedAmmoBox addItemCargoGlobal ["DemoCharge_Remote_Mag",2];
 		_spawnedAmmoBox addWeaponCargoGlobal ["BWA3_Pzf3",1];
@@ -93,9 +94,9 @@ if(!isNull _caller) then {
 		hint _hintAmmoBoxSpawned;
 		
 		comment "land ammo box safely (if stuck in tree)";
-		_spawnedAmmoBoxOldPos = getPosATL _spawnedAmmoBox;
+		local  _spawnedAmmoBoxOldPos = getPosATL _spawnedAmmoBox;
 		sleep 60;
-		_spawnedAmmoBoxCurPos = getPosATL _spawnedAmmoBox;
+		local  _spawnedAmmoBoxCurPos = getPosATL _spawnedAmmoBox;
 		waitUntil{
 			_spawnedAmmoBoxCurPos = getPosATL _spawnedAmmoBox;
 			sleep 5;

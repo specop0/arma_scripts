@@ -1,14 +1,14 @@
-_returnValue = false;
+local _returnValue = false;
 if(isServer) then {
-_parameterCorrect = params [["_noGroupToSpawn",-1,[0]]];
-_noCachedGroups = count specCachedGroups;
+local _parameterCorrect = params [["_noGroupToSpawn",-1,[0]]];
+local _noCachedGroups = count specCachedGroups;
 
 if(_parameterCorrect) then {
-	_noGroupToSpawnRounded = round _noGroupToSpawn;
+	local _noGroupToSpawnRounded = round _noGroupToSpawn;
 	if(_noGroupToSpawn == _noGroupToSpawnRounded) then {
 		if(_noGroupToSpawn < _noCachedGroups && _noGroupToSpawn >= 0) then {
-			_cachedGroupArray = specCachedGroups select _noGroupToSpawn;
-			_sizeCachedGroupArray = count _cachedGroupArray;
+			local _cachedGroupArray = specCachedGroups select _noGroupToSpawn;
+			local _sizeCachedGroupArray = count _cachedGroupArray;
 			if(_sizeCachedGroupArray != 0) then {
 				if( _sizeCachedGroupArray == 5) then {
 					_returnValue = [(_cachedGroupArray select 0),( _cachedGroupArray select 1), (_cachedGroupArray select 2), (_cachedGroupArray select 3), (_cachedGroupArray select 4)] call Spec_fnc_spawnGroup_data;

@@ -1,15 +1,17 @@
-_returnValue = false;
+local _returnValue = false;
 if(isServer) then {
-	_parameterCorrect = params [["_side",objNull,[WEST]], ["_position",objNull,[[0]],3], ["_direction",0,[0]], ["_unitTypeArray",objNull], ["_waypointsArray",objNull]];
+	local _parameterCorrect = params [["_side",objNull,[WEST]], ["_position",objNull,[[0]],3], ["_direction",0,[0]], ["_unitTypeArray",objNull], ["_waypointsArray",objNull]];
 	if (_parameterCorrect) then {
 		if (count _unitTypeArray > 0) then {
 			// spawn units
-			_group = createGroup _side;
+			local _group = createGroup _side;
+			local "_spawnedUnit";
 			{
 				_spawnedUnit = _group createUnit [_x, _position, [], 0, "FORM"];
 				_spawnedUnit setDir _direction;
 			} foreach _unitTypeArray;
 			// assign group waypoints
+			local "_waypoint";
 			{
 				_waypoint = _group addWaypoint [(_x select 0), (_x select 1)];
 				_waypoint setWaypointBehaviour (_x select 2);

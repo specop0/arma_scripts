@@ -1,17 +1,17 @@
-_parameterCorrect = (_this select 3) params [["_caller",objNull],["_markerName",objNull,["STRING"]],["_radius",0,[0]]];
+local _parameterCorrect = (_this select 3) params [["_caller",objNull],["_markerName",objNull,["STRING"]],["_radius",0,[0]]];
 
-_hintPlayerInAreaAlive = "Im Gebiet sind noch befreundete Streitkräfte am Leben. Cleanup nicht möglich.";
-_hintCleanUpStarted = "Es wird angefangen alle Einheiten im Gebiet zu löschen. Dies kann einen Moment dauern.";
-_hintCleanUpSucessfull = "Es wurden alle Einheiten im Gebiet gelöscht.";
+local _hintPlayerInAreaAlive = "Im Gebiet sind noch befreundete Streitkräfte am Leben. Cleanup nicht möglich.";
+local _hintCleanUpStarted = "Es wird angefangen alle Einheiten im Gebiet zu löschen. Dies kann einen Moment dauern.";
+local _hintCleanUpSucessfull = "Es wurden alle Einheiten im Gebiet gelöscht.";
 
-_cleanUpSleepTime = 0.1;
+local _cleanUpSleepTime = 0.1;
 if(_parameterCorrect) then {
-	_sidePlayer = side _caller;
-	_position = getMarkerPos _markerName;
+	local _sidePlayer = side _caller;
+	local _position = getMarkerPos _markerName;
 	if(_position select 0 != 0 && _position select 1 != 0) then {
-		_objects = _position nearObjects ["Land",_radius];
+		local _objects = _position nearObjects ["Land",_radius];
 		// ACE Wheels still present
-		_numberBluforAlive = 0;
+		local _numberBluforAlive = 0;
 		{
 			if( (side _x) == _sidePlayer) then {
 				if(alive _x) then {

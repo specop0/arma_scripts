@@ -1,9 +1,9 @@
-_parameterCorrect = params [["_x",objNull,[objNull]]];
+local _parameterCorrect = params [["_x",objNull,[objNull]]];
 
-_standardWeapon = "hlc_rifle_auga3";
-_standardWeaponGL = "hlc_rifle_auga3_GL";
-_lmg = "rhs_weap_m249_pip_L";
-_mg = "hlc_lmg_m60";
+local _standardWeapon = "hlc_rifle_auga3";
+local _standardWeaponGL = "hlc_rifle_auga3_GL";
+local _lmg = "rhs_weap_m249_pip_L";
+local _mg = "hlc_lmg_m60";
 
 
 if(_parameterCorrect) then {

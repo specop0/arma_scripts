@@ -1,15 +1,15 @@
-_returnValue = false;
+local _returnValue = false;
 if(isServer) then {
-	_parameterCorrect = params [["_unitToCache",objNull],["_noGroupToCache",-1,[0]]];
+	local _parameterCorrect = params [["_unitToCache",objNull],["_noGroupToCache",-1,[0]]];
 		if(_parameterCorrect) then {
 			if(_unitToCache isKindof "Man") then {
-				_noGroupToCacheRounded = round _noGroupToCache;
+				local _noGroupToCacheRounded = round _noGroupToCache;
 				if(_noGroupToCache == _noGroupToCacheRounded && _noGroupToCache >= 0) then {
 					if(isNil "specCachedGroups") then {
 						specCachedGroups = [];
 					};
-					_sizeCachedGroups = count specCachedGroups;
-					_noGroupToCacheAvailable = false;
+					local _sizeCachedGroups = count specCachedGroups;
+					local _noGroupToCacheAvailable = false;
 					if(_noGroupToCache < _sizeCachedGroups) then {
 						if( count (specCachedGroups select _noGroupToCache) == 0) then {
 							specCachedGroups set [_noGroupToCache, 1];
