@@ -5,13 +5,13 @@ if(isServer) then {
 		if (count _unitTypeArray > 0) then {
 			// spawn units
 			local _group = createGroup _side;
-			local "_spawnedUnit";
+			private "_spawnedUnit";
 			{
 				_spawnedUnit = _group createUnit [_x, _position, [], 0, "FORM"];
 				_spawnedUnit setDir _direction;
 			} foreach _unitTypeArray;
 			// assign group waypoints
-			local "_waypoint";
+			private "_waypoint";
 			{
 				_waypoint = _group addWaypoint [(_x select 0), (_x select 1)];
 				_waypoint setWaypointBehaviour (_x select 2);

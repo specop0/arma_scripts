@@ -19,7 +19,7 @@ if(isServer) then {
 					local _waypointsArray = [];
 					local _i = 0;
 					local _noWaypoints = count (waypoints _group);
-					local ["_waypointPosition","_waypointBehaviour","_waypointCombatMode","_waypointCompletionRadius","_waypointFormation","_waypointSpeed","_waypointTimeout","_waypointType"];
+					private ["_waypointPosition","_waypointBehaviour","_waypointCombatMode","_waypointCompletionRadius","_waypointFormation","_waypointSpeed","_waypointTimeout","_waypointType"];
 					while { _i < _noWaypoints } do {
 						_waypointPosition = waypointPosition [_group,_i];
 						_waypointBehaviour = waypointBehaviour [_group,_i];

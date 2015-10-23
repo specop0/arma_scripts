@@ -1,18 +1,18 @@
 local _returnValue = false;
 if(isServer) then {
 local _parameterCorrect = params [["_noGroupToSpawn",-1,[0]]];
-local _noCachedGroups = count specCachedGroups;
+local _noCachedGroups = count Spec_var_cachedGroups;
 
 if(_parameterCorrect) then {
 	local _noGroupToSpawnRounded = round _noGroupToSpawn;
 	if(_noGroupToSpawn == _noGroupToSpawnRounded) then {
 		if(_noGroupToSpawn < _noCachedGroups && _noGroupToSpawn >= 0) then {
-			local _cachedGroupArray = specCachedGroups select _noGroupToSpawn;
+			local _cachedGroupArray = Spec_var_cachedGroups select _noGroupToSpawn;
 			local _sizeCachedGroupArray = count _cachedGroupArray;
 			if(_sizeCachedGroupArray != 0) then {
 				if( _sizeCachedGroupArray == 5) then {
 					_returnValue = [(_cachedGroupArray select 0),( _cachedGroupArray select 1), (_cachedGroupArray select 2), (_cachedGroupArray select 3), (_cachedGroupArray select 4)] call Spec_fnc_spawnGroup_data;
-					specCachedGroups set [_noGroupToSpawn,[]];
+					Spec_var_cachedGroups set [_noGroupToSpawn,[]];
 				} else {
 					["Script Error: Group number (%1) should have been cached, but entry is wrong, size is (%2)", _noGroupToSpawn, count _cachedGroupArray] call BIS_fnc_error;
 				}
