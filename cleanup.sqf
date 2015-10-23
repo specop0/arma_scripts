@@ -10,7 +10,7 @@ if(_parameterCorrect) then {
 	local _position = getMarkerPos _markerName;
 	if(_position select 0 != 0 && _position select 1 != 0) then {
 		local _objects = _position nearObjects ["Land",_radius];
-		// ACE Wheels still present
+		// ammo crates, air vehicle still present
 		local _numberBluforAlive = 0;
 		{
 			if( (side _x) == _sidePlayer) then {
@@ -29,6 +29,11 @@ if(_parameterCorrect) then {
 				sleep _cleanUpSleepTime;
 			} foreach _objects;
 			hint _hintCleanUpSucessfull;
+			// ACE Wheels other type
+			{
+				deleteVehicle _x;
+				sleep _cleanUpSleepTime;
+			} foreach (_position nearObjects ["ACE_Wheel",_radius]);
 		} else {
 			hint _hintPlayerInAreaAlive;
 		};

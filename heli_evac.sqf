@@ -25,11 +25,11 @@ local _heightAboveLZ = 3;
 local _radiusOfUnitsToLoad = 50;
 
 comment "Script start";
-local _parameterCorrect = params ["",["_caller",objNull]];
+params ["",["_caller",objNull,[objNull]]];
 local _heliSpawn = getMarkerPos _markerNameHeliSpawn;
 local _lzEnd = getMarkerPos _markerNameBase;
 
-if(_parameterCorrect) then {
+if(isNull _caller) then {
 	hint "Script Error: Unit which called for Helicoptor is null/has no Position attached";
 } else {
 	if( (_lzEnd select 0 == 0 && _lzEnd select 1 == 0 && _lzEnd select 2 == 0) || 
