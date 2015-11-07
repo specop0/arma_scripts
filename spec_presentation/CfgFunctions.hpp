@@ -1,4 +1,4 @@
-class spec_tfar {
+class spec_presentation {
 	tag = "Spec";
 	class init {
 		file="spec_presentation";
