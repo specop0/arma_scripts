@@ -4,7 +4,7 @@ local _atLauncher = "UK3CB_BAF_AT4_AT_Launcher";
 local _aaLauncher = "rhs_weap_fim92";
 local _aaAmmo = "rhs_fim92_mag";
 
-if(_parameterCorrect) then {
+if(_parameterCorrect && isServer) then {
 	clearWeaponCargoGlobal _x;
 	clearMagazineCargoGlobal _x;
 	_x addWeaponCargoGlobal [_atLauncher,2];

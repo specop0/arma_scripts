@@ -9,7 +9,7 @@ local _smokeShell = "1Rnd_Smoke_Grenade_shell";
 local _smokeShellRed = "1Rnd_SmokeRed_Grenade_shell";
 local _heShell = "1Rnd_HE_Grenade_shell";
 
-if(_parameterCorrect) then {
+if(_parameterCorrect && isServer) then {
 	clearMagazineCargoGlobal _x;
 	_x addMagazineCargoGlobal [_standardAmmo,34];
 	_x addMagazineCargoGlobal [_mgAmmo,4];

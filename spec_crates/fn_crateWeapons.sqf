@@ -6,7 +6,7 @@ local _lmg = "rhs_weap_m249_pip_L";
 local _mg = "hlc_lmg_m60";
 
 
-if(_parameterCorrect) then {
+if(_parameterCorrect && isServer) then {
 	clearWeaponCargoGlobal _x;
 	_x addWeaponCargoGlobal [_standardWeapon,4];
 	_x addWeaponCargoGlobal [_standardWeaponGL,1];
