@@ -30,5 +30,5 @@ if(isServer) then {
 		"Script Error: parsing arguments failed" call BIS_fnc_error;
 	};
 } else {
-	[_this,"Spec_fnc_changeSlide", false] call BIS_fnc_MP;
+	_this remoteExecCall "Spec_fnc_changeSlide";
 };
