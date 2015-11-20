@@ -45,3 +45,10 @@ spec_tfar:
 1) for each unit 'setVariable ["Spec_var_swFreq",["100","101"]]' and 'setVariable ["Spec_var_lrFreq",["30","31"]]'
 2) call Spec_fnc_TFAR_init BEFORE loadout is given / radio is received
 3) sets TFAR frequencies according to Arrays
+
+spec_zeus:
+- Curator unit sharing incl JIP/Respawn (from https://forums.bistudio.com/topic/166808-making-placed-units-be-editable-for-every-zeus/)
+- placed units are transfered to the server (later extendable to headless client)
+- currently serverID is determined in a bad way (with sleep)
+1) add functions via header-file in descriptions.ext
+2) in onPlayerRespawn.sqf add: [player] call Spec_fnc_assignToAllCurators;
