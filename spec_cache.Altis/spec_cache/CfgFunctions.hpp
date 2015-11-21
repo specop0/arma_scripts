@@ -6,5 +6,6 @@ class spec_cache {
 		class cacheGroup_data {};
 		class spawnGroup {};
 		class spawnGroup_data {};
+		class spawnGroups {};
 	};
 };
