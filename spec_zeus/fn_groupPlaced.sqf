@@ -11,7 +11,9 @@ if(_parameterCorrect && isServer) then {
 	_localityChanged = false;
 	if (_unitsHaveAI) then {
 		if(!isNil "Spec_var_ownerList") then {
-			_localityChanged = _groupPlaced setGroupOwner (Spec_var_ownerList select 0);
+			if(count Spec_var_ownerList > 0) then {
+				_localityChanged = _groupPlaced setGroupOwner (Spec_var_ownerList select 0);
+			};
 		};
 	};
 	// make group editable for allCurators

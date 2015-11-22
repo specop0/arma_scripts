@@ -18,6 +18,9 @@ if(isServer) then {
 			} forEach allUnits;
 			if(_serverID != 0) then {
 				Spec_var_ownerList pushBack _serverID;
+			} else {
+				// serverID seems to be 2 (always?)
+				Spec_var_ownerList pushBack 2;
 			};
 			// TODO pushback headless client list
 		};
