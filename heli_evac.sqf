@@ -1,3 +1,20 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	AI Helicopter Evacuation Script.
+	Spawn helicopter at defined marker, flies to player, lifts off if no man is nearby
+	and flies to a destination defined by a marker.
+	For use in a addAction entry, most parameter are hardcoded.
+
+	Parameter(s):
+	0: -
+	1: OBJECT - player who wants to spawn the object (i.e. a player who chooses the menu entry)
+
+	Returns:
+	true
+*/
+
 comment "Edit these Entries";
 
 comment "Type of spawned Helicoptor (this Unit has to include AI)";
@@ -94,3 +111,4 @@ if(isNull _caller) then {
 		};
 	};
 };
+true

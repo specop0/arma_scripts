@@ -1,3 +1,17 @@
+/*
+	Author: FETT, SpecOp0
+
+	Description:
+	Changes to owner of a (placed) unit and adds it to all Curators.
+
+	Parameter(s):
+	0: OBJECT - curator which placed the unit
+	1: OBJECT - object which was placed
+
+	Returns:
+	true
+*/
+
 private ["_parameterCorrect","_localityChanged","_objectHasAI"];
 _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPlaced",objNull,[objNull]] ];
 

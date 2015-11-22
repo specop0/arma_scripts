@@ -1,3 +1,18 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Spawns vehicle (on ground) if no vehicle of same type is nearby (10m radius).
+	For use in a addAction entry, vehicle and spawn parameter hardcoded.
+
+	Parameter(s):
+	0: -
+	1: OBJECT - player who wants to spawn the object (i.e. a player who chooses the menu entry)
+
+	Returns:
+	true
+*/
+
 comment "Edit these Entries";
 
 comment "Type of Vehicle";
@@ -37,3 +52,4 @@ if(isNull _caller) then {
 		};
 	};
 };
+true

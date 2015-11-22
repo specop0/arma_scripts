@@ -1,3 +1,17 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Caches group of a unit.
+
+	Parameter(s):
+	0: OBJECT - unit to cache (will cache the whole group)
+	1: NUMBER - unique index to save unit/group into array (must be positive or zero)
+
+	Returns:
+	BOOL - true if caching is successful (otherwise errors are shown in addition)
+*/
+
 local _returnValue = false;
 if(isServer) then {
 	local _parameterCorrect = params [["_unitToCache",objNull],["_noGroupToCache",-1,[0]]];

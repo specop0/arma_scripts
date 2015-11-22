@@ -1,3 +1,17 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Assigns a Player to all Curators (Respawn/JIP).
+	If the Player is a Curator all objects will be added to his module.
+
+	Parameter(s):
+	0: OBJECT - player (or unit) which should be added to the Curators
+
+	Returns:
+	true
+*/
+
 if(!isServer) then {
 	// call this function on server
 	_this remoteExecCall ["Spec_fnc_assignToAllCurators", 2, false];

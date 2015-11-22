@@ -1,3 +1,18 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Spawn pilots into a plane which then takes off and follows assigns waypoints (with flyInHeight).
+	For use in a addAction entry, most parameter are hardcoded.
+
+	Parameter(s):
+	0: OBJECT - plane who will be flown by the AI
+
+	Returns:
+	true
+*/
+
+
 comment "Edit these Entries";
 local _parameterCorrect = params [["_airplane",objNull,[objNull]]];
 
@@ -58,4 +73,5 @@ if(_parameterCorrect) then {
 } else {
 	hint "Script Error: Wrong Input parameter, expected airplane";
 };
+true
 	

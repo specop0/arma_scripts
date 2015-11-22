@@ -1,3 +1,14 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Initializes a list with the serverID on the server.
+	(TODO add HeadlessClients)
+
+	Returns:
+	true
+*/
+
 if(isServer) then {
 	if(isNil "Spec_var_ownerList") then {
 		Spec_var_ownerList = [];

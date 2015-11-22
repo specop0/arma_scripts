@@ -1,3 +1,19 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Spawns multiple cached group in scheduled environment with sleep to avoid heavy load.
+	The groups are spawned from a starting to an ending index (including this index).
+
+	Parameter(s):
+	0: NUMBER - unique index of first cached group to spawn (must be positive or zero and unit has to beached with cacheGroup)
+	1: NUMBER - unique index of last  cached group to spawn (must be positive or zero and unit has to beached with cacheGroup)
+	2 (Optional): NUMBER - sleep time in seconds (default 0.5) 
+
+	Returns:
+	BOOL - true if spawning is successful (otherwise errors are shown in addition)
+*/
+
 private ["_scriptHandle"];
 _scriptHandle = _this spawn {
 	private ["_parameterCorrect"];
