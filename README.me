@@ -41,7 +41,7 @@ template for ammo crates
 
 spec_presentation:
 simple slide show of pictures (e.g. at billboard)
-1) in init.sqf: [sign_presentation, "pictureDirectory"] call Spec_fnc_addSlides OR [sign_presentation] call Spec_fnc_addSlides (uses default directory "pictures")
+1) in init.sqf: [sign_presentation, numberOfSlides, "pictureDirectory"] call Spec_fnc_addSlides OR [sign_presentationm, numberOfSlides] call Spec_fnc_addSlides (uses default directory "pictures")
 2) object sign_presentation has addActions to navigate slides (calls are only handled from the server)
 3) pictures have to be named presentation_xxx.jpg starting with presentation_000.jpg
 
