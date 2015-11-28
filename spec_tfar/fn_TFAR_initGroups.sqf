@@ -51,7 +51,7 @@ if(_parameterCorrect) then {
 			_swFreq = ["142","140"];
 			_lrFreq = ["42","30","31","32","41","43","51","52"];
 			_callsign = "Adler";
-			_BFTicon = "b_air";
+			_BFTicon = "b_plane";
 		};
 		case 9 : {
 			_swFreq = ["143","140"];
