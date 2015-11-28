@@ -20,3 +20,4 @@ if(_parameterCorrect) then {
 		} foreach _lrFreq;
 	};
 };
+true

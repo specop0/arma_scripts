@@ -46,9 +46,14 @@ simple slide show of pictures (e.g. at billboard)
 3) pictures have to be named presentation_xxx.jpg starting with presentation_000.jpg
 
 spec_tfar:
+1) for each unit 'setVariable ["Spec_var_TFARgroup", 0]'
+2) edit group entries in fn_TFAR_initGroups.sqf (see switch case)
+3) sets TFAR frequencies according to Arrays (on Respawn)
+to test BFT values with AI call 'Spec_fnc_initGroups' for each unit (i.e. when giving loadout)
+
+spec_tfar_var:
 1) for each unit 'setVariable ["Spec_var_swFreq",["100","101"]]' and 'setVariable ["Spec_var_lrFreq",["30","31"]]'
-2) call Spec_fnc_TFAR_init BEFORE loadout is given / radio is received
-3) sets TFAR frequencies according to Arrays
+2) sets TFAR frequencies according to Arrays (on Respawn)
 
 spec_zeus:
 - Curator unit sharing incl JIP/Respawn (from https://forums.bistudio.com/topic/166808-making-placed-units-be-editable-for-every-zeus/)
