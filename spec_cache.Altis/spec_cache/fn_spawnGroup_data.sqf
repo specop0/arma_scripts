@@ -1,10 +1,10 @@
-local _returnValue = false;
+private _returnValue = false;
 if(isServer) then {
-	local _parameterCorrect = params [["_side",objNull,[WEST]], ["_position",objNull,[[0]],3], ["_direction",0,[0]], ["_unitTypeArray",objNull], ["_waypointsArray",objNull]];
+	private _parameterCorrect = params [["_side",objNull,[WEST]], ["_position",objNull,[[0]],3], ["_direction",0,[0]], ["_unitTypeArray",objNull], ["_waypointsArray",objNull]];
 	if (_parameterCorrect) then {
 		if (count _unitTypeArray > 0) then {
 			// spawn units
-			local _group = createGroup _side;
+			private _group = createGroup _side;
 			private "_spawnedUnit";
 			{
 				_spawnedUnit = _group createUnit [_x, _position, [], 0, "FORM"];

@@ -21,8 +21,7 @@
 */
 
 if(isServer) then {
-	private ["_parameterCorrect"];
-	_parameterCorrect = params [ ["_sign",objNull,[objNull]], ["_caller",objNull,[objNull]], "_idAction"];
+	private _parameterCorrect = params [ ["_sign",objNull,[objNull]], ["_caller",objNull,[objNull]], "_idAction"];
 	_addActionParameterCorrect = (_this select 3) params [ ["_type",0,[0]], ["_pictureDirectory","pictures",["STRING"]] ];
 	if(_parameterCorrect && _addActionParameterCorrect) then {
 		private ["_pictureNumber","_validSlide","_numberOfSlides"];

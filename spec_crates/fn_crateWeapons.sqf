@@ -1,9 +1,9 @@
-local _parameterCorrect = params [["_x",objNull,[objNull]]];
+private _parameterCorrect = params [["_x",objNull,[objNull]]];
 
-local _standardWeapon = "hlc_rifle_auga3";
-local _standardWeaponGL = "hlc_rifle_auga3_GL";
-local _lmg = "rhs_weap_m249_pip_L";
-local _mg = "hlc_lmg_m60";
+private _standardWeapon = "hlc_rifle_auga3";
+private _standardWeaponGL = "hlc_rifle_auga3_GL";
+private _lmg = "rhs_weap_m249_pip_L";
+private _mg = "hlc_lmg_m60";
 
 
 if(_parameterCorrect && isServer) then {

@@ -18,11 +18,9 @@
 	BOOL - true if spawning is successful (otherwise errors are shown in addition)
 */
 
-private ["_scriptHandle"];
-_scriptHandle = _this spawn {
-	private ["_parameterCorrect","_parameter"];
-	_parameter = _this;
-	_parameterCorrect = _parameter params [ ["_start",0,[0]], ["_end",-1,[0]] ];
+private _scriptHandle = _this spawn {
+	private _parameter = _this;
+	private _parameterCorrect = _parameter params [ ["_start",0,[0]], ["_end",-1,[0]] ];
 	// if parameter are not try the parameter of an addAction entry (_this select 3)
 	if(!_parameterCorrect && count _parameter > 3) then {
 		_parameter = _this select 3;
@@ -33,8 +31,7 @@ _scriptHandle = _this spawn {
 	if(_parameterCorrect) then {
 		if(_start >= 0) then {
 			params [ "", "", ["_sleepTime",0.5,[0]] ];
-			private ["_i"];
-			_i = _start;
+			private _i = _start;
 			while { _i <= _end } do {
 				[_i] call Spec_fnc_spawnGroup;
 				sleep _sleepTime;

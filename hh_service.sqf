@@ -2,13 +2,11 @@
 //1.0 - 06.03.2015
 //from scratch
 //1.1 - 22.11.2015
-//added spawn if used compiled and local variables (by Spec)
+//added spawn if used compiled and private variables (by Spec)
 
-private ["_scriptHandle"];
-_scriptHandle = _this spawn {
+private _scriptHandle = _this spawn {
 	if(params [ ["_object",objNull,[objNull]] ]) then {
-		private ["_delay"];
-		_delay = 5;
+		private _delay = 5;
 		
 		_object setFuel 0;
 		_object vehicleChat format ["Wartung wird durchgeführt... Bitte warten..."];

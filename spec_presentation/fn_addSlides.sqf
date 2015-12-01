@@ -14,7 +14,7 @@
 	true
 */
 
-_parameterCorrect = params [ ["_sign",objNull,[objNull]], ["_noPictures",-1,[0]], ["_pictureDirectory","pictures",["STRING"]] ];
+private _parameterCorrect = params [ ["_sign",objNull,[objNull]], ["_noPictures",-1,[0]], ["_pictureDirectory","pictures",["STRING"]] ];
 if(!isNull _sign) then {
 	_sign addAction ["Next Slide", Spec_fnc_changeSlide, [1, _pictureDirectory], 2];
 	_sign addAction ["Previous Slide", Spec_fnc_changeSlide, [-1, _pictureDirectory], 1];

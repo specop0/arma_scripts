@@ -1,7 +1,7 @@
-local _parameterCorrect = params [["_unitName",objNull,[objNull]]];
+private _parameterCorrect = params [["_unitName",objNull,[objNull]]];
 
 if(_parameterCorrect) then {
-	local _groupID = _unitName getVariable ["Spec_var_TFARgroup", 0];
+	private _groupID = _unitName getVariable ["Spec_var_TFARgroup", 0];
 	private ["_swFreq", "_lrFreq", "_callsign", "_BFTicon"];
 	_BFTicon = "b_inf";
 	

@@ -1,8 +1,8 @@
-local _parameterCorrect = params [["_x",objNull,[objNull]]];
+private _parameterCorrect = params [["_x",objNull,[objNull]]];
 
-local _atLauncher = "UK3CB_BAF_AT4_AT_Launcher";
-local _aaLauncher = "rhs_weap_fim92";
-local _aaAmmo = "rhs_fim92_mag";
+private _atLauncher = "UK3CB_BAF_AT4_AT_Launcher";
+private _aaLauncher = "rhs_weap_fim92";
+private _aaAmmo = "rhs_fim92_mag";
 
 if(_parameterCorrect && isServer) then {
 	clearWeaponCargoGlobal _x;

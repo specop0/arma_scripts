@@ -14,25 +14,25 @@
 
 
 comment "Edit these Entries";
-local _parameterCorrect = params [["_airplane",objNull,[objNull]]];
+private _parameterCorrect = params [["_airplane",objNull,[objNull]]];
 
 comment "Name of Marker for Waypoints";
-local _markerNameWaypoints = ["wp1","wp2"];
+private _markerNameWaypoints = ["wp1","wp2"];
 
-local _pilotType = "B_Pilot_F";
+private _pilotType = "B_Pilot_F";
 
 comment "Some other Parameters";
-local _radiusOfUnitsToLoad = 50;
-local _sleepTime = 10;
-local _flightHeight = 500;
+private _radiusOfUnitsToLoad = 50;
+private _sleepTime = 10;
+private _flightHeight = 500;
 
 comment "Script start";
 if(_parameterCorrect) then {
 
-	local _waypointsParseError = false;
-	local _waypointsPositions = [];
+	private _waypointsParseError = false;
+	private _waypointsPositions = [];
 	{
-		local _pos = getMarkerPos _x;
+		private _pos = getMarkerPos _x;
 		_waypointsPositions pushBack _pos;
 		if(_pos select 0 == 0 && _pos select 1 == 0) then {
 			_waypointsParseError = true;
@@ -41,8 +41,8 @@ if(_parameterCorrect) then {
 	} foreach _markerNameWaypoints;
 
 	if(!_waypointsParseError) then {
-		local _bluforOutside = 0;
-		local _unitsOutside = [];
+		private _bluforOutside = 0;
+		private _unitsOutside = [];
 		waitUntil {
 			sleep _sleepTime;
 			_bluforOutside = 0;
@@ -54,15 +54,15 @@ if(_parameterCorrect) then {
 			} foreach _unitsOutside;
 			_bluforOutside <= 0
 		};
-		local _groupAirplane = createGroup WEST;
-		local _pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
+		private _groupAirplane = createGroup WEST;
+		private _pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
 		_pilot moveInCargo _airplane;
 		_pilot = _groupAirplane createUnit [_pilotType, [0,0,0], [], 0, "NONE"];
 		_pilot moveInTurret [_airplane, [0]];
-		local _wp = _groupAirplane addWaypoint [getPos _airplane, count (waypoints _groupAirplane)];
+		private _wp = _groupAirplane addWaypoint [getPos _airplane, count (waypoints _groupAirplane)];
 		_wp setWaypointType "GETIN NEAREST";
-		local _flyInHeightStr = format ["%1 flyInHeight %2;", _airplane, _flightHeight];
-		local _i = 0;
+		private _flyInHeightStr = format ["%1 flyInHeight %2;", _airplane, _flightHeight];
+		private _i = 0;
 		{
 			_i = count (waypoints _groupAirplane);
 			_wp = _groupAirplane addWaypoint [_x, _i];

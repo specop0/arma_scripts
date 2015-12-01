@@ -20,8 +20,7 @@
 	true
 */
 
-private ["_scriptHandle"];
-_scriptHandle = _this spawn {
+private _scriptHandle = _this spawn {
 
 	private ["_parameterCorrect","_chance","_types","_null","_sleepTime"];
 	_parameterCorrect = params [ ["_car",objNull,[objNull]], ["_possibility",50,[0]], ["_shoutout","DIE!",["STRING"]], ["_delay",1,[0]], ["_size","MEDIUM",["STRING"]] ];

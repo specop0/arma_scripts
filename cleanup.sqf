@@ -21,20 +21,20 @@
 	true
 */
 
-local _parameterCorrect = (_this select 3) params [ ["_caller",objNull,[objNull]],["_markerName","",["STRING"]],["_radius",0,[0]] ];
+private _parameterCorrect = (_this select 3) params [ ["_caller",objNull,[objNull]],["_markerName","",["STRING"]],["_radius",0,[0]] ];
 
-local _hintPlayerInAreaAlive = "Im Gebiet sind noch befreundete Streitkräfte am Leben. Cleanup nicht möglich.";
-local _hintCleanUpStarted = "Es wird angefangen alle Einheiten im Gebiet zu löschen. Dies kann einen Moment dauern.";
-local _hintCleanUpSucessfull = "Es wurden alle Einheiten im Gebiet gelöscht.";
+private _hintPlayerInAreaAlive = "Im Gebiet sind noch befreundete Streitkräfte am Leben. Cleanup nicht möglich.";
+private _hintCleanUpStarted = "Es wird angefangen alle Einheiten im Gebiet zu löschen. Dies kann einen Moment dauern.";
+private _hintCleanUpSucessfull = "Es wurden alle Einheiten im Gebiet gelöscht.";
 
-local _cleanUpSleepTime = 0.1;
+private _cleanUpSleepTime = 0.1;
 if(_parameterCorrect) then {
-	local _sidePlayer = side _caller;
-	local _position = getMarkerPos _markerName;
+	private _sidePlayer = side _caller;
+	private _position = getMarkerPos _markerName;
 	if(_position select 0 != 0 && _position select 1 != 0) then {
-		local _objects = _position nearObjects ["Land",_radius];
+		private _objects = _position nearObjects ["Land",_radius];
 		// ammo crates, air vehicle still present
-		local _numberBluforAlive = 0;
+		private _numberBluforAlive = 0;
 		{
 			if( (side _x) == _sidePlayer) then {
 				if(alive _x) then {

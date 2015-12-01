@@ -1,24 +1,24 @@
-local _cachedGroupArray = [];
+private _cachedGroupArray = [];
 if(isServer) then {
-	local _parameterCorrect = params [["_unitToCache",objNull]];
+	private _parameterCorrect = params [["_unitToCache",objNull]];
 	if(_parameterCorrect) then {
 		if(_unitToCache isKindof "Man") then {
 					// save leader position, etc
-					local _group = group _unitToCache;
-					local _leader = leader _group;
-					local _side = side _leader;
-					local _direction = getDir _leader;
-					local _positionLeader = getPosATL _leader;
+					private _group = group _unitToCache;
+					private _leader = leader _group;
+					private _side = side _leader;
+					private _direction = getDir _leader;
+					private _positionLeader = getPosATL _leader;
 					// save type of units
-					local _unitTypeArray = [typeOf _leader];
+					private _unitTypeArray = [typeOf _leader];
 					{
 						_unitTypeArray pushBack (typeOf _x);
 					} foreach units _group - [_leader];
 
 					// save waypoints
-					local _waypointsArray = [];
-					local _i = 0;
-					local _noWaypoints = count (waypoints _group);
+					private _waypointsArray = [];
+					private _i = 0;
+					private _noWaypoints = count (waypoints _group);
 					private ["_waypointPosition","_waypointBehaviour","_waypointCombatMode","_waypointCompletionRadius","_waypointFormation","_waypointSpeed","_waypointTimeout","_waypointType"];
 					while { _i < _noWaypoints } do {
 						_waypointPosition = waypointPosition [_group,_i];

@@ -14,13 +14,11 @@ if(isServer) then {
 		Spec_var_ownerList = [];
 	};
 	if(count Spec_var_ownerList == 0) then {
-		private ["_scriptHandle"];
-		_scriptHandle = [] spawn {
+		private _scriptHandle = [] spawn {
 			// sleep because otherwise the serverID is 0
 			sleep 20;
 			// look for local unit to get serverID
-			private ["_serverID"];
-			_serverID = 0;
+			private _serverID = 0;
 			{
 				if(local _x) then {
 					_serverID = owner _x;
