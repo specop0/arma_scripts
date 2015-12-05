@@ -2,8 +2,7 @@
 	Author: SpecOp0
 
 	Description:
-	Initializes a list with the serverID on the server.
-	(TODO add HeadlessClients)
+	Initializes a list with the server ID and ID of headless clients on the server.
 	In addition for every Curator allUnits will be added.
 
 	Returns:
@@ -47,6 +46,33 @@ if(isServer) then {
 					};
 				};
 			} forEach allPlayers;
+			// DEBUG COMMENT
+			(format ["%1", (str Spec_var_ownerList)]) remoteExec ["hint"];
+			sleep 1;
+			// assign AI groups to Server and HC (if HC exist)
+			if(count Spec_var_ownerList > 1) then {
+				private _playerGroups = [];
+				{
+					if (!isNull _x && {!((group _x) in _playerGroups)}) then {
+						_playerGroups pushBack (group _x);
+					};
+				} forEach allPlayers;
+				private _i = 0;
+				{
+					if(!isNull _x) then {
+						_x setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+					};
+				} forEach allGroups - _playerGroups;
+				sleep 2;
+				// DEBUG COMMENT
+				{
+					if(!isNull _x) then {
+						(format ["%1\n%2\n%3", local (leader _x), str (name (leader _x)), owner (leader _x)]) remoteExec ["hint"];
+						sleep 1;
+					};
+				} forEach allGroups;
+			};
+
 		};
 	};
 };

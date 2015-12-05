@@ -9,12 +9,11 @@
 	true
 */
 
-if(isServer) then {
-	{
-		_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
-		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
-	} forEach allCurators;
-};
+{
+	_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
+	_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
+} forEach allCurators;
+
 if(hasInterface) then {
 	[player] call Spec_fnc_assignToAllCurators;
 	player addEventHandler ["respawn", Spec_fnc_assignToAllCurators];
