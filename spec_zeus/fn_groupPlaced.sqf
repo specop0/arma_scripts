@@ -17,7 +17,7 @@ _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_groupPlaced",grpN
 
 if(_parameterCorrect && isServer) then {
 	_unitsPlaced = (units _groupPlaced);
-	// check if unit has AI and change ownership (TODO check for headless clients)
+	// check if unit has AI and change ownership
 	_unitsHaveAI = false;
 	{
 		if (_x isKindOf "Man") exitWith {_unitsHaveAI = true};

@@ -41,6 +41,4 @@ if(isServer) then {
 } else {
 	"Wrong Usage: This function should only be called on the server." call BIS_fnc_error;
 };
-// DEBUG COMMENT
-(format ["%1", str _returnValue]) remoteExec ["hint"];
 _returnValue

@@ -16,7 +16,7 @@ private ["_parameterCorrect","_localityChanged","_objectHasAI"];
 _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPlaced",objNull,[objNull]] ];
 
 if(_parameterCorrect && isServer) then {
-	// check if unit has AI and change ownership (TODO check for headless clients)
+	// check if unit has AI and change ownership
 	_objectHasAI = _objectPlaced isKindOf "Man";
 	_localityChanged = false;
 	if (_objectHasAI) then {
