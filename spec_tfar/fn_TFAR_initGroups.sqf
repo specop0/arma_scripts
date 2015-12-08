@@ -2,14 +2,16 @@ private _parameterCorrect = params [["_unitName",objNull,[objNull]]];
 
 if(_parameterCorrect) then {
 	private _groupID = _unitName getVariable ["Spec_var_TFARgroup", 0];
-	private ["_swFreq", "_lrFreq", "_callsign", "_BFTicon"];
+	private ["_swFreq", "_lrFreq", "_callsign", "_BFTicon", "_BFTremarks"];
 	_BFTicon = "b_inf";
+	_BFTremarks = name _unitName;
 	
 	switch _groupID do {
 		case 0 : {
 			_swFreq = ["100"];
 			_lrFreq = ["30","31","32","41","42","43","51","52"];
 			_callsign = "Gelb";
+			_BFTicon = "b_hq";
 		};
 		case 1 : {
 			_swFreq = ["111","110","112","113"];
@@ -45,7 +47,7 @@ if(_parameterCorrect) then {
 			_swFreq = ["141","140"];
 			_lrFreq = ["41","30","31","32","42","43","51","52"];
 			_callsign = "Weiss";
-			_BFTicon = "b_air";
+			_BFTicon = "b_med";
 		};
 		case 8 : {
 			_swFreq = ["142","140"];
@@ -56,18 +58,26 @@ if(_parameterCorrect) then {
 		case 9 : {
 			_swFreq = ["143","140"];
 			_lrFreq = ["43","30","31","32","41","42","51","52"];
-			_callsign = "Silber";
-			_BFTicon = "b_air";
+			_callsign = "Silber - Habicht";
+			_BFTicon = "b_service";
 		};
 		case 10 : {
+			_swFreq = ["143","140"];
+			_lrFreq = ["43","30","31","32","41","42","51","52"];
+			_callsign = "Silber - Bussard";
+			_BFTicon = "b_service";			
+		};
+		case 11 : {
 			_swFreq = ["151","150","152"];
 			_lrFreq = ["51","30","31","32","52"];
 			_callsign = "Gold";
+			_BFTicon = "b_recon";
 		};
-		case 11 : {
+		case 12 : {
 			_swFreq = ["152","150","151"];
 			_lrFreq = ["52","30","31","32","51"];
 			_callsign = "Grau";
+			_BFTicon = "b_recon";
 		};
 		default {
 			_swFreq = ["100"];
@@ -83,6 +93,7 @@ if(_parameterCorrect) then {
 	_unitName setGroupID [_callsign];
 	_unitName setVariable ["BG_BFT_groupId", _callsign];
 	_unitName setVariable ["BG_BFT_icon", _BFTicon]; 
+	_unitName setVariable ["BG_BFT_remarks", _BFTremarks];
 	if(count _swFreq > 0) then {
 		_unitName setVariable ["BG_BFT_radioSR", (_swFreq select 0)];
 	};
