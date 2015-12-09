@@ -21,8 +21,8 @@
 private _scriptHandle = _this spawn {
 	private _parameter = _this;
 	private _parameterCorrect = _parameter params [ ["_start",0,[0]], ["_end",-1,[0]] ];
-	// if parameter are not try the parameter of an addAction entry (_this select 3)
-	if(!_parameterCorrect && count _parameter > 3) then {
+	// if parameter are not valid try the parameter of an addAction entry (_this select 3)
+	if(!_parameterCorrect && count _parameter > 3 && {(_this select 3) isEqualType [[]]}) then {
 		_parameter = _this select 3;
 		_parameterCorrect = _parameter params [ ["_startAddAction",0,[0]], ["_endAddAction",-1,[0]] ];
 		_start = _startAddAction;
