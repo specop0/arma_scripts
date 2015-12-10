@@ -14,7 +14,7 @@
 	4: STRING - size of explosion: "SMALL", "MEDIUM" or "LARGE"
 	5 (Optional): BOOL - if true will wait for enemy side to be nearby before explosion
 	6 (Optional): NUMBER - distance/radius to look for enemies (if 5 is true)
-	7 (Optional): SIDE - side of enemy (if 5 is true); standard value ist "WEST"
+	7 (Optional): SIDE - side of enemy (if 5 is true); default value is "WEST"
 
 	Returns:
 	true
@@ -25,11 +25,11 @@ private _scriptHandle = _this spawn {
 	private ["_parameterCorrect","_chance","_types","_null","_sleepTime"];
 	_parameterCorrect = params [ ["_car",objNull,[objNull]], ["_possibility",50,[0]], ["_shoutout","DIE!",["STRING"]], ["_delay",1,[0]], ["_size","MEDIUM",["STRING"]] ];
 	// optional parameter
-	params [ "", "", "", "", "", ["_lookForEnemy",0,[0]], ["_distance",30,[0]], ["_enemySide",WEST,[WEST]] ];
+	params [ "", "", "", "", "", ["_lookForEnemy",false,[true]], ["_distance",30,[0]], ["_enemySide",WEST,[WEST]] ];
 
 	// time to look for enemies (as large as possible to avoid heavy computation)
 	_sleepTime = 0.5;
-	while {_lookForEnemy == 1} do
+	while {_lookForEnemy} do
 	{
 		if(alive _car) then	{
 			// explodes if vehicle is empty
@@ -37,13 +37,13 @@ private _scriptHandle = _this spawn {
 			{
 				_types = _car nearObjects ["Man", _distance];
 				{
-					if (side _x == _enemySide) exitWith {_lookForEnemy = 0};
+					if (side _x == _enemySide) exitWith {_lookForEnemy = false};
 				} foreach _types;
 			} else {
-				if(true) exitWith {_lookForEnemy = 0};
+				if(true) exitWith {_lookForEnemy = false};
 			};
 		} else {
-			_lookForEnemy = 0;
+			_lookForEnemy = false;
 			_possibility = 0;
 		};
 		sleep _sleepTime;
@@ -58,7 +58,7 @@ private _scriptHandle = _this spawn {
 		sleep _delay;
 		switch (_size) do {
 			case "SMALL": {
-				{deleteVehicle _x} foreach (crew _car);
+				{deleteVehicle _x} foreach (crew _car) - [_car];
 				_null = "M_Mo_82mm_AT_LG" createVehicle getPos _car;
 				_updatepos = [(getPos _car) select 0, ((getPos _car) select 1) + 1];
 				sleep 0.25;
@@ -66,14 +66,15 @@ private _scriptHandle = _this spawn {
 				_car setDammage 1; 
 			};
 			case "MEDIUM" : {
-				{deleteVehicle _x} foreach (crew _car);
+				{deleteVehicle _x} foreach (crew _car) - [_car];
 				_null = "Sh_122_HE" createVehicle getPos _car;
 				_car setDammage 1; 
 			};
 			case "LARGE" : {
-				{deleteVehicle _x} foreach (crew _car);
+				{deleteVehicle _x} foreach (crew _car) - [_car];
 				_null = "Bo_GBU12_LGB" createVehicle getPos _car;
-				deleteVehicle _car;
+				_car setDammage 1; 
+				//deleteVehicle _car;
 			};
 			default {
 				["Wrong Parameter: Expected size of explosion to be ""SMALL"", ""MEDIUM"" or ""LARGE""."] call BIS_fnc_error;
