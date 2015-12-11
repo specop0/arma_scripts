@@ -58,9 +58,16 @@ if(isServer) then {
 					};
 				} forEach allPlayers;
 				private _i = 0;
+				private _groupHasAI = false;
 				{
 					if(!isNull _x) then {
-						_x setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+						_groupHasAI = false;
+						{
+							if (_x isKindOf "Man") exitWith {_groupHasAI = true};
+						} forEach _x;
+						if(_groupHasAI) then {
+							_x setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+						};
 					};
 				} forEach allGroups - _playerGroups;
 

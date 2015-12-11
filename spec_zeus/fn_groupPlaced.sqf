@@ -12,7 +12,7 @@
 	true
 */
 
-private ["_parameterCorrect","_localityChanged","_unitsPlaced","_unitsHaveAI"];
+private ["_parameterCorrect","_unitsPlaced","_unitsHaveAI"];
 _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_groupPlaced",grpNull,[grpNull]] ];
 
 if(_parameterCorrect && isServer) then {
@@ -22,19 +22,12 @@ if(_parameterCorrect && isServer) then {
 	{
 		if (_x isKindOf "Man") exitWith {_unitsHaveAI = true};
 	} forEach _unitsPlaced;
-	_localityChanged = false;
 	if (_unitsHaveAI) then {
-		_localityChanged = _groupPlaced setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+		_groupPlaced setGroupOwner ([] call Spec_fnc_getNextOwnerID);
 	};
 	// make group editable for allCurators
-	if(_localityChanged) then {
-		{
-			_x addCuratorEditableObjects [_unitsPlaced,true];
-		} forEach allCurators;
-	} else {
-		{
-			_x addCuratorEditableObjects [_unitsPlaced,true];
-		} forEach (allCurators - [_curator]);
-	};
+	{
+		_x addCuratorEditableObjects [_unitsPlaced,true];
+	} forEach (allCurators - [_curator]);
 };
 true
