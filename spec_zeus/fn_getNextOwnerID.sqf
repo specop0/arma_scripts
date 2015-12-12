@@ -4,10 +4,10 @@
 	Description:
 	Chooses a owner ID to assign a group to.
 	Possible IDs are in a list generated at mission start.
-	
+
 	In consecutive execution the next entry is chosen (or first if we shoot over).
 	Race condition to get and modify the index variable (as a result an entry
-	could be chosen twice/multiple times before increasing). 
+	could be chosen twice/multiple times before increasing).
 
 	Returns:
 	NUMBER - owner ID (default value: 2)

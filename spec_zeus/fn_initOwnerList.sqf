@@ -37,7 +37,7 @@ if(isServer) then {
 				// serverID seems often to be 2 (always?)
 				Spec_var_ownerList pushBack 2;
 			};
-			
+
 			// push back headless clients
 			private ["_hcID"];
 			{
@@ -59,14 +59,16 @@ if(isServer) then {
 				} forEach allPlayers;
 				private _i = 0;
 				private _groupHasAI = false;
+				private _id = 2;
 				{
 					if(!isNull _x) then {
 						_groupHasAI = false;
 						{
 							if (_x isKindOf "Man") exitWith {_groupHasAI = true};
-						} forEach _x;
+						} forEach (units _x);
 						if(_groupHasAI) then {
-							_x setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+							_id = [] call Spec_fnc_getNextOwnerID;
+							_x setGroupOwner _id;
 						};
 					};
 				} forEach allGroups - _playerGroups;

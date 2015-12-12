@@ -23,7 +23,8 @@ if(_parameterCorrect && isServer) then {
 		if (_x isKindOf "Man") exitWith {_unitsHaveAI = true};
 	} forEach _unitsPlaced;
 	if (_unitsHaveAI) then {
-		_groupPlaced setGroupOwner ([] call Spec_fnc_getNextOwnerID);
+		private _id = [] call Spec_fnc_getNextOwnerID;
+		_groupPlaced setGroupOwner _id;
 	};
 	// make group editable for allCurators
 	{

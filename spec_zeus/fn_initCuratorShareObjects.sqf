@@ -16,6 +16,6 @@
 
 if(hasInterface) then {
 	[player] call Spec_fnc_assignToAllCurators;
-	player addEventHandler ["respawn", Spec_fnc_assignToAllCurators];
+	player addEventHandler ["Respawn", Spec_fnc_assignToAllCurators];
 };
 true
