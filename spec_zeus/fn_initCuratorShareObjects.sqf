@@ -8,13 +8,13 @@
 	Returns:
 	true
 */
-
-{
-	_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
-	_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
-} forEach allCurators;
-
 if(hasInterface) then {
+	// add EventHandler to Curator Modules
+	{
+		_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
+		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
+	} forEach allCurators;
+	// assign Player to Curator Modules
 	[player] call Spec_fnc_assignToAllCurators;
 	player addEventHandler ["Respawn", Spec_fnc_assignToAllCurators];
 };

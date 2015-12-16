@@ -91,14 +91,14 @@ if(_parameterCorrect) then {
 
 	// BFT Settings
 	_unitName setGroupID [_callsign];
-	_unitName setVariable ["BG_BFT_groupId", _callsign];
-	_unitName setVariable ["BG_BFT_icon", _BFTicon]; 
-	_unitName setVariable ["BG_BFT_remarks", _BFTremarks];
+	_unitName setVariable ["BG_BFT_groupId", _callsign, true];
+	_unitName setVariable ["BG_BFT_icon", _BFTicon, true]; 
+	_unitName setVariable ["BG_BFT_remarks", _BFTremarks, true];
 	if(count _swFreq > 0) then {
-		_unitName setVariable ["BG_BFT_radioSR", (_swFreq select 0)];
+		_unitName setVariable ["BG_BFT_radioSR", (_swFreq select 0), true];
 	};
 	if(count _lrFreq > 0) then {
-		_unitName setVariable ["BG_BFT_radioLR", (_lrFreq select 0)];
+		_unitName setVariable ["BG_BFT_radioLR", (_lrFreq select 0), true];
 	};
 	
 };

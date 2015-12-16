@@ -16,6 +16,11 @@ private ["_parameterCorrect","_objectHasAI"];
 _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPlaced",objNull,[objNull]] ];
 
 if(_parameterCorrect && isServer) then {
+	// make unit editable for allCurators
+	// [_objectPlaced]+(crew _objectPlaced)
+	{
+		_x addCuratorEditableObjects [[_objectPlaced],true];
+	} forEach (allCurators - [_curator]);
 	// check if unit has AI and change ownership
 	_objectHasAI = _objectPlaced isKindOf "Man";
 	if(!_objectHasAI) then {
@@ -27,9 +32,5 @@ if(_parameterCorrect && isServer) then {
 		private _id = [] call Spec_fnc_getNextOwnerID;
 		(group _objectPlaced) setGroupOwner _id;
 	};
-	// make unit editable for allCurators
-	{
-		_x addCuratorEditableObjects [[_objectPlaced],true];
-	} forEach (allCurators - [_curator]);
 };
 true

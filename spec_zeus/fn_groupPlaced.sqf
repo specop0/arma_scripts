@@ -17,6 +17,10 @@ _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_groupPlaced",grpN
 
 if(_parameterCorrect && isServer) then {
 	_unitsPlaced = (units _groupPlaced);
+	// make group editable for allCurators
+	{
+		_x addCuratorEditableObjects [_unitsPlaced,true];
+	} forEach (allCurators - [_curator]);
 	// check if unit has AI and change ownership
 	_unitsHaveAI = false;
 	{
@@ -26,9 +30,5 @@ if(_parameterCorrect && isServer) then {
 		private _id = [] call Spec_fnc_getNextOwnerID;
 		_groupPlaced setGroupOwner _id;
 	};
-	// make group editable for allCurators
-	{
-		_x addCuratorEditableObjects [_unitsPlaced,true];
-	} forEach (allCurators - [_curator]);
 };
 true
