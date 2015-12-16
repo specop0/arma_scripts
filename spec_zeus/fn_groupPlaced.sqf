@@ -12,23 +12,17 @@
 	true
 */
 
-private ["_parameterCorrect","_unitsPlaced","_unitsHaveAI"];
-_parameterCorrect = params [ ["_curator",objNull,[objNull]],["_groupPlaced",grpNull,[grpNull]] ];
+private _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_groupPlaced",grpNull,[grpNull]] ];
 
 if(_parameterCorrect && isServer) then {
-	_unitsPlaced = (units _groupPlaced);
-	// make group editable for allCurators
-	{
-		_x addCuratorEditableObjects [_unitsPlaced,true];
-	} forEach (allCurators - [_curator]);
 	// check if unit has AI and change ownership
-	_unitsHaveAI = false;
-	{
-		if (_x isKindOf "Man") exitWith {_unitsHaveAI = true};
-	} forEach _unitsPlaced;
-	if (_unitsHaveAI) then {
+	if (!isNull _groupPlaced) then {
 		private _id = [] call Spec_fnc_getNextOwnerID;
 		_groupPlaced setGroupOwner _id;
 	};
+	// make group editable for allCurators
+	{
+		_x addCuratorEditableObjects [(units _groupPlaced),true];
+	} forEach (allCurators - [_curator]);
 };
 true
