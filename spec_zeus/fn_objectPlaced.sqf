@@ -17,9 +17,8 @@ _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPlaced",obj
 
 if(_parameterCorrect && isServer) then {
 	// make unit editable for allCurators
-	// [_objectPlaced]+(crew _objectPlaced)
 	{
-		_x addCuratorEditableObjects [[_objectPlaced],true];
+		_x addCuratorEditableObjects [ ([_objectPlaced] + crew _objectPlaced),true];
 	} forEach (allCurators - [_curator]);
 	// check if unit has AI and change ownership
 	_objectHasAI = _objectPlaced isKindOf "Man";
