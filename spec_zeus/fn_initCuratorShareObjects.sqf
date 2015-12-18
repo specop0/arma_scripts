@@ -4,6 +4,8 @@
 	Description:
 	Adds to all Curators an EventHandler if a unit and group is placed.
 	Adds to all Players an EventHandler to assign its (respawned) unit to allCurators.
+	
+	In addition for every Curator allUnits will be added.
 
 	Returns:
 	true
@@ -17,5 +19,12 @@ if(hasInterface) then {
 	// assign Player to Curator Modules
 	[player] call Spec_fnc_assignToAllCurators;
 	player addEventHandler ["Respawn", Spec_fnc_assignToAllCurators];
+};
+if(isServer) then {
+	// add allUnits to allCurators
+	{
+		_x addCuratorEditableObjects [allUnits, false];
+		_x addCuratorEditableObjects [vehicles, false];
+	} forEach allCurators;
 };
 true
