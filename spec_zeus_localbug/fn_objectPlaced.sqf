@@ -20,7 +20,16 @@ private _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPla
 if(_parameterCorrect && isServer) then {
 	// make unit editable for allCurators
 	{
-		_x addCuratorEditableObjects [ [_objectPlaced],true];
+		_x addCuratorEditableObjects [_objectPlaced,true];
 	} forEach (allCurators - [_curator]);
+	// check if unit has AI and change ownership
+	private _objectGroup = group _objectPlaced;
+	if (!isNull _objectGroup) then {
+		// test if unit is spawned with curator object or group module
+		if(count (units _objectGroup) == count (crew _objectPlaced)) then {
+			private _id = [] call Spec_fnc_getNextOwnerID;
+			_objectGroup setGroupOwner _id;
+		};
+	};
 };
 true
