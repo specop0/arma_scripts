@@ -13,12 +13,11 @@
 	Returns:
 	true
 */
-private _parameterCorrect = params [["_unitName",objNull,[objNull]]];
-private _arrayTypeName = "ARRAY";
+private _parameterCorrect = params [["_unit",objNull,[objNull]]];
 
 if(_parameterCorrect) then {
-	private _swFreq = _unitName getVariable ["Spec_var_swFreq", ["30"]];
-	if(typeName _swFreq == _arrayTypeName && call TFAR_fnc_haveSWRadio) then {
+	private _swFreq = _unit getVariable ["Spec_var_swFreq", ["30"]];
+	if(_swFreq isEqualType [] && call TFAR_fnc_haveSWRadio) then {
 		_swFreq resize (count _swFreq min 8);
 		private _swRadio = call TFAR_fnc_activeSwRadio;
 		{
@@ -26,8 +25,8 @@ if(_parameterCorrect) then {
 		} foreach _swFreq;
 	};
 
-	private _lrFreq = _unitName getVariable ["Spec_var_lrFreq", ["30"]];
-	if(typeName _lrFreq == _arrayTypeName && call TFAR_fnc_haveLRRadio) then {
+	private _lrFreq = _unit getVariable ["Spec_var_lrFreq", ["30"]];
+	if(_lrFreq  isEqualType [] && call TFAR_fnc_haveLRRadio) then {
 		_lrFreq resize (count _lrFreq min 9);
 		private _lrRadio = call TFAR_fnc_activeLrRadio;
 		{
