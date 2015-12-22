@@ -1,3 +1,18 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Sets Short Range according to array "Spec_var_swFreq" of unit
+	and Long Range according to array "Spec_var_lrFreq" of unit.
+	
+	Example in init-field add: this setVariable ["Spec_var_swFreq",["101","100"]];
+	
+	Parameter(s):
+	0: OBJECT - unit/player whose frequency should be set
+
+	Returns:
+	true
+*/
 private _parameterCorrect = params [["_unitName",objNull,[objNull]]];
 private _arrayTypeName = "ARRAY";
 

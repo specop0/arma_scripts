@@ -1,3 +1,18 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Enforces usage of TFAR by setting TFAR module.
+	If client hasInterface (is a player) the TFAR frequencies are initialized (see fn_TFAR_initGroups)
+	and a EventHandler is added if a new radio is received to set frequencies accordingly (see fn_setTFAR.sqf)
+	
+	Parameter(s):
+	-
+
+	Returns:
+	true
+*/
+
 // TFAR mod configuration
 #include "\task_force_radio\functions\common.sqf";
 

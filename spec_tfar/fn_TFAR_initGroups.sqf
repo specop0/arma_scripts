@@ -1,3 +1,19 @@
+/*
+	Author: SpecOp0
+
+	Description:
+	Initializes for a unit variables needed for setting TFAR frequencies
+	and set names for BFT system.
+	Variables are chosen based on variable "Spec_var_TFARgroup".
+	
+	Example in init-field add: this setVariable ["Spec_var_TFARgroup",0];
+	
+	Parameter(s):
+	0: OBJECT - unit/player which variables need to be initialized
+
+	Returns:
+	true
+*/
 private _parameterCorrect = params [["_unitName",objNull,[objNull]]];
 
 if(_parameterCorrect) then {
