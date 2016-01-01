@@ -18,6 +18,8 @@
 	true
 */
 
+private _script = _this spawn {
+
 private _ammoBoxType = "B_supplyCrate_F";
 private _parachuteType = "B_Parachute_02_F";
 
@@ -138,5 +140,7 @@ if(_parameterCorrect) then {
 	};
 } else {
 	hint "Script Error: Calling player is Null";
+};
+
 };
 true
