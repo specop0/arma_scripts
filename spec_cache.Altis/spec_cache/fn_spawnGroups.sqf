@@ -19,7 +19,7 @@
 */
 if(!isServer) then {
 	// remoteExecute this on the server if called via addAction entry
-	if(_parameter isEqualType [] && {count _parameter > 3}) then {
+	if(_this isEqualType [] && {count _this > 3}) then {
 		_this remoteExec ["Spec_fnc_spawnGroups", 2, false];
 	};
 } else {
