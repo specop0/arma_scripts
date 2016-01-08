@@ -3,7 +3,7 @@
 
 TF_give_personal_radio_to_regular_soldier = true; //inverted module setting
 tf_no_auto_long_range_radio = true; //inverted module setting
-TF_terrain_interception_coefficient = 7;
+TF_terrain_interception_coefficient = 0;
 tf_radio_channel_name = "LaufendeMission";
 tf_radio_channel_password = "130";
 if(isServer) then {
