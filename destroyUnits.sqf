@@ -26,6 +26,8 @@ if(isServer) then {
 					sleep 1;
 				};
 			} forEach _objectList;
+		} else {
+			["Wrong Parameter: Marker %1 does not exist (or has x- and y-coordinate 0).", _markerName] call BIS_fnc_error;
 		};
 	};
 };
