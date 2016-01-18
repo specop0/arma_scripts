@@ -29,6 +29,7 @@ if(isServer) then {
 
 if(hasInterface) then {
 	player call Spec_fnc_TFAR_initGroups;
+	player call Spec_fnc_setTFAR;
 	["Spec_setTFAR", "OnRadiosReceived", Spec_fnc_setTFAR, player] call TFAR_fnc_addEventHandler;
 };
 true
