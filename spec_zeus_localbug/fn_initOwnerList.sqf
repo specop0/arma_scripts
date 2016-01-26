@@ -10,11 +10,6 @@
 */
 
 if(isServer) then {
-	// add allUnits to allCurators
-	{
-		_x addCuratorEditableObjects [allUnits, false];
-		_x addCuratorEditableObjects [vehicles, false];
-	} forEach allCurators;
 	// init ownerList
 	if(isNil "Spec_var_ownerList") then {
 		Spec_var_ownerList = [];
