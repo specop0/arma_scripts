@@ -17,8 +17,8 @@ if(hasInterface) then {
 		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
 	} forEach allCurators;
 	// assign Player to Curator Modules
-	[player] call Spec_fnc_assignToAllCurators;
-	player addEventHandler ["Respawn", Spec_fnc_assignToAllCurators];
+	[player] remoteExec ["Spec_fnc_assignToAllCurators",2];
+	player addEventHandler ["Respawn", {_this remoteExec ["Spec_fnc_assignToAllCurators",2];}];
 };
 if(isServer) then {
 	// add allUnits to allCurators

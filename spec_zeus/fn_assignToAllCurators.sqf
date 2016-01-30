@@ -14,7 +14,7 @@
 
 if(!isServer) then {
 	// call this function on server
-	_this remoteExecCall ["Spec_fnc_assignToAllCurators", 2, false];
+	_this remoteExec ["Spec_fnc_assignToAllCurators", 2, false];
 } else {
 	private _parameterCorrect = params [ ["_player",objNull,[objNull]] ];
 	if(_parameterCorrect) then {
