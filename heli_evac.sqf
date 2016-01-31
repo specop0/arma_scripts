@@ -30,7 +30,7 @@ private _markerNameHeliSpawn = "heli_spawn";
 private _markerNameBase = "ende";
 
 comment "Hints displayed for Caller";
-private _hintHeliOnMove = "Hier Bussard\nSind auf dem Weg zu ihrer Positionen.\nBussard Ende.";
+private _hintHeliOnMove = "Hier Bussard\nSind auf dem Weg zu ihrer Position.\nBussard Ende.";
 private _hintHeliNearLZ = "Hier Bussard\nNähern uns der LZ. Werfen Sie bitte violetten Rauch.\nBussard Ende.";
 private _hintHeliLanded = "Touchdown!";
 private _hintHeliLiftoff = "Liftoff!";
