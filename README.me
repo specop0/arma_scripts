@@ -12,7 +12,7 @@ destroyUnits.sqf:
 Destroys units (Man and LandVehicle) around given marker with given radius.
 
 heli_evac.sqf:
-1) spawn helicoptor at defined marker
+1) spawn helicopter at defined marker
 2) fly to player
 3) liftoff if no man nearby
 4) destination marker
@@ -47,6 +47,17 @@ example mission:
 
 spec_crates:
 template for ammo crates
+
+spec_heli:
+two different upgrades of heli_evac.sqf which use a helicopter placed in the editor
+a) heli_taxi.sqf and moveMarkerLZ.sqf
+a.1) choose ace action to mark a LZ
+a.2) if player clicks on map a LZ marker will be placed (visible for everyone and unique name)
+a.3) if helicopter is called flies to marker position and flies off to base if no man nearby
+b) heli_medevac (heli_medevac_retransfer)
+b.1) helicopter flies to player/caller position
+b.2) flies to base if no man nearby
+b.3) unloaded passenger will be fully healed with a PAK (from ACE Advanced Medic)
 
 spec_presentation:
 simple slide show of pictures (e.g. at billboard)
