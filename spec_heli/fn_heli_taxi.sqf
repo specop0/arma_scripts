@@ -18,7 +18,7 @@
 
 comment "Edit these Entries";
 
-comment "Name of Marker for Helicopter and 'Base'/Invisible Helipad";
+comment "Name of Helicopter and 'Base'/Invisible Helipad";
 private _helicopter = bussard;
 private _landingPadBase = landingpad_bussard;
 
@@ -32,15 +32,17 @@ private _hintHeliMakerLZnotFound = "Hier Bussard\nKoennen Markierung von LZ Alph
 
 comment "Some other Parameters";
 private _distanceToLZ = 700; // if this distance is the travel distance the script won't work (helicopter takes off instantly)
-private _heightAboveLZ = 3;
+private _heightAboveLZ = 1;
 private _radiusOfUnitsToLoad = 25;
 
 comment "Script start";
 private _markerLZ = "Spec_marker_LZ";
+if(isNil "_helicopter" || isNil "_landingPadBase") exitWith { hint "Script Error: Helicopter and/or Helipad not found"; };
 params ["",["_caller",objNull,[objNull]]];
 private _landingPadBasePos = position _landingPadBase;
 private _landingPadMarkerPos = getMarkerPos _markerLZ;
 
+scopeName "heliscript";
 if(isNull _caller) then {
 	"Script Error: Unit which called for Helicopter is null/has no Position attached" remoteExec ["hint"];
 } else {
@@ -67,12 +69,19 @@ if(isNull _caller) then {
 				_crewGroup setCurrentWaypoint _wp0;
 				private _wp1 = _crewGroup addWaypoint [_landingPadPos,0];
 				_wp1 setWaypointType "TR UNLOAD"; 
-				_hintHeliOnMove remoteExec ["hint",_caller];		
+				_hintHeliOnMove remoteExec ["hint",_caller];	
+
+				private _waypointsOfThisScript = [_wp0 select 1, _wp1 select 1];				
 				
 				// check if helicopter is near LZ
 				private _heliPos = [0,0,0];
 				waitUntil {
 					sleep 10;
+					// abort script if new waypoints are added (newer call of this script)
+					if !(currentWaypoint _crewGroup in _waypointsOfThisScript || currentWaypoint _crewGroup == count waypoints _crewGroup) then {
+						"Script Aborted: Helicopter was flying to the LZ." remoteExec ["hint",_caller];
+						true breakOut "heliscript"
+					};
 					_heliPos = getPosATL _helicopter;
 					[_heliPos select 0,_heliPos select 1] distance [_landingPadPos select 0,_landingPadPos select 1] <= _distanceToLZ
 				};
@@ -81,6 +90,11 @@ if(isNull _caller) then {
 				// check if helicopter has landed
 				waitUntil {
 					sleep 10;
+					// abort script if new waypoints are added (newer call of this script)
+					if !(currentWaypoint _crewGroup in _waypointsOfThisScript || currentWaypoint _crewGroup == count waypoints _crewGroup) then {
+						"Script Aborted: Helicopter was near the LZ and tried to land." remoteExec ["hint",_caller];
+						true breakOut "heliscript"
+					};
 					(getPosATL _helicopter) select 2 <= _heightAboveLZ
 				};
 				_hintHeliLanded remoteExec ["hint",_caller];
@@ -90,6 +104,11 @@ if(isNull _caller) then {
 				private _unitsOutside = [];
 				waitUntil {
 					sleep 10;
+					// abort script if new waypoints are added (newer call of this script)
+					if !(currentWaypoint _crewGroup in _waypointsOfThisScript || currentWaypoint _crewGroup == count waypoints _crewGroup) then {
+						"Script Aborted: Helicopter was waiting for everyone at the LZ to board the Helicopter." remoteExec ["hint",_caller];
+						true breakOut "heliscript"
+					};
 					_bluforOutside = 0;
 					_unitsOutside = nearestObjects [_helicopter,["CAManBase"],_radiusOfUnitsToLoad];
 					{ 
@@ -100,8 +119,13 @@ if(isNull _caller) then {
 					format [_hintHeliNumberOfManOutside, _bluforOutside] remoteExec ["hint",_caller];
 					_bluforOutside <= 0
 				};
+				// abort script if new waypoints are added (newer call of this script)
+				if !(currentWaypoint _crewGroup in _waypointsOfThisScript || currentWaypoint _crewGroup == count waypoints _crewGroup) then {
+					"Script Aborted: Helicopter was waiting for everyone at the LZ to board the Helicopter." remoteExec ["hint",_caller];
+					true breakOut "heliscript"
+				};
 				_hintHeliLiftoff remoteExec ["hint",_caller];
-				// fly to base turn off engine and fully heal embarked units
+				// fly to base and turn off engine
 				private _wp2 = _crewGroup addWaypoint [_landingPadBasePos,0];
 				_wp2 setWaypointType "TR UNLOAD"; 
 				_wp2 setWaypointStatements ["true","this action [""engineOff"", vehicle this];"];
