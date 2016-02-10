@@ -20,7 +20,7 @@ private _parameterCorrect = params [ ["_curator",objNull,[objNull]],["_objectPla
 if(_parameterCorrect && isServer) then {
 	// make unit editable for allCurators
 	{
-		_x addCuratorEditableObjects [ [_objectPlaced],true];
+		_x addCuratorEditableObjects [[_objectPlaced],true];
 	} forEach (allCurators - [_curator]);
 };
 true
