@@ -15,6 +15,13 @@ if(hasInterface) then {
 	{
 		_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
 		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
+		_x addEventHandler ["CuratorObjectEdited",{
+			params ["_curator","_entity"];
+			if(!local _entity) then {
+				private _dir = direction _entity;
+				[_entity,_dir] remoteExec ["setDir",_entity];
+			};
+		}];
 	} forEach allCurators;
 	// assign Player to Curator Modules
 	[player] remoteExec ["Spec_fnc_assignToAllCurators",2];
