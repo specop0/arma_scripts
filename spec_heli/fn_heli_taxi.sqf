@@ -3,10 +3,10 @@
 
 	Description:
 	AI Helicopter Taxi Script.
-	Flies defined helicopter (at defined base landing pad) to marker called Spec_marker_LZ (see moveMarkerLZ.sqf),
+	Flies defined helicopter (at defined base landing pad) to marker called Spec_marker_LZ (see moveMarkerLZ.sqf and const.hpp),
 	lifts off if no man is nearby and flies to base.
 	
-	For use in a addAction entry, most parameter are hardcoded.
+	For use in a addAction entry, most parameter are hardcoded in const.hpp.
 
 	Parameter(s):
 	0: -
@@ -15,38 +15,25 @@
 	Returns:
 	true
 */
+#include "const.hpp"
 
 comment "Edit these Entries";
 
 comment "Name of Helicopter and 'Base'/Invisible Helipad";
-private _helicopter = bussard;
-private _landingPadBase = landingpad_bussard;
-
-comment "Hints displayed for Caller";
-private _hintHeliOnMove = "Hier Bussard\nSind auf dem Weg zu LZ Alpha.\nBussard Ende.";
-private _hintHeliNearLZ = "Hier Bussard\nNähern uns der LZ. Werfen Sie violetten Rauch.\nBussard Ende.";
-private _hintHeliNumberOfManOutside = "Noch %1 draußen.";
-private _hintHeliLanded = "Touchdown!";
-private _hintHeliLiftoff = "Liftoff!";
-private _hintHeliMakerLZnotFound = "Hier Bussard\nKoennen Markierung von LZ Alpha nicht finden. Bitte neu markieren.\nBussard Ende.";
-
-comment "Some other Parameters";
-private _distanceToLZ = 700; // if this distance is the travel distance the script won't work (helicopter takes off instantly)
-private _heightAboveLZ = 1;
-private _radiusOfUnitsToLoad = 25;
+private _helicopter = HELI_TAXI_ID;
+private _helipadBase = HELI_TAXI_HELIPAD_BASE_ID;
 
 comment "Script start";
-private _markerLZ = "Spec_marker_LZ";
-if(isNil "_helicopter" || isNil "_landingPadBase") exitWith { hint "Script Error: Helicopter and/or Helipad not found"; };
+if(isNil "_helicopter" || isNil "_helipadBase") exitWith { hint "Script Error: Helicopter and/or Helipad not found"; };
 params ["",["_caller",objNull,[objNull]]];
-private _landingPadBasePos = position _landingPadBase;
-private _landingPadMarkerPos = getMarkerPos _markerLZ;
+private _helipadBasePos = position _helipadBase;
+private _helipadMarkerPos = getMarkerPos MARKER_A_ID;
 
 scopeName "heliscript";
 if(isNull _caller) then {
 	"Script Error: Unit which called for Helicopter is null/has no Position attached" remoteExec ["hint"];
 } else {
-	if( isNull _helicopter || (_landingPadBasePos select 0 == 0 && _landingPadBasePos select 1 == 0 && _landingPadBasePos select 2 == 0) ) then {
+	if( isNull _helicopter || (_helipadBasePos select 0 == 0 && _helipadBasePos select 1 == 0 && _helipadBasePos select 2 == 0) ) then {
 		format ["Script Error: Helicopter '%1' and/or Helipad '%2' not found", str _helicopter, str _markerNameBase] remoteExec ["hint",_caller];
 	} else {
 		private _crewGroup = group _helicopter;
@@ -54,22 +41,22 @@ if(isNull _caller) then {
 		if(isNull _crewGroup) then {
 			format ["Script Error: Crew of Helicopter '%1' not found", str _helicopter] remoteExec ["hint",_caller];
 		} else {	
-			if(_landingPadMarkerPos select 0 == 0 && _landingPadMarkerPos select 1 == 0) then {
-				_hintHeliMakerLZnotFound remoteExec ["hint",_caller];
+			if(_helipadMarkerPos select 0 == 0 && _helipadMarkerPos select 1 == 0) then {
+				HINT_HELI_TAX_LZ_MARKER_NOT_FOUND remoteExec ["hint",_caller];
 			} else {
-				private _landingPad = "Land_HelipadEmpty_F" createVehicle _landingPadMarkerPos;
-				private _landingPadPos = getPos _landingPad;
+				private _helipad = "Land_HelipadEmpty_F" createVehicle _helipadMarkerPos;
+				private _helipadPos = getPos _helipad;
 
-				private _wp0 = _crewGroup addWaypoint [_landingPadPos,0];
+				private _wp0 = _crewGroup addWaypoint [_helipadPos,0];
 				_wp0 setWaypointType "MOVE"; 
 				_wp0 setWaypointBehaviour "CARELESS";
 				// force this waypoint to be active (delete scripts of current waypoint)
 				private _oldWP = (waypoints _crewGroup) select (currentWaypoint _crewGroup);
 				_oldWP setWaypointStatements ["true",""];
 				_crewGroup setCurrentWaypoint _wp0;
-				private _wp1 = _crewGroup addWaypoint [_landingPadPos,0];
+				private _wp1 = _crewGroup addWaypoint [_helipadPos,0];
 				_wp1 setWaypointType "TR UNLOAD"; 
-				_hintHeliOnMove remoteExec ["hint",_caller];	
+				HINT_HELI_TAXI_ON_MOVE remoteExec ["hint",_caller];	
 
 				private _waypointsOfThisScript = [_wp0 select 1, _wp1 select 1];				
 				
@@ -83,9 +70,9 @@ if(isNull _caller) then {
 						true breakOut "heliscript"
 					};
 					_heliPos = getPosATL _helicopter;
-					[_heliPos select 0,_heliPos select 1] distance [_landingPadPos select 0,_landingPadPos select 1] <= _distanceToLZ
+					[_heliPos select 0,_heliPos select 1] distance [_helipadPos select 0,_helipadPos select 1] <= HELI_TAXI_DISTANCE_TO_LZ
 				};
-				_hintHeliNearLZ remoteExec ["hint",_caller];
+				HINT_HELI_TAXI_NEAR_LZ remoteExec ["hint",_caller];
 				
 				// check if helicopter has landed
 				waitUntil {
@@ -95,9 +82,9 @@ if(isNull _caller) then {
 						"Script Aborted: Helicopter was near the LZ and tried to land." remoteExec ["hint",_caller];
 						true breakOut "heliscript"
 					};
-					(getPosATL _helicopter) select 2 <= _heightAboveLZ
+					(getPosATL _helicopter) select 2 <= HELI_TAXI_HEIGHT_ABOVE_LZ
 				};
-				_hintHeliLanded remoteExec ["hint",_caller];
+				HINT_HELI_TAXI_LANDED remoteExec ["hint",_caller];
 				
 				// check for Man nearby and take off if no one found
 				private _bluforOutside = 0;
@@ -110,13 +97,13 @@ if(isNull _caller) then {
 						true breakOut "heliscript"
 					};
 					_bluforOutside = 0;
-					_unitsOutside = nearestObjects [_helicopter,["CAManBase"],_radiusOfUnitsToLoad];
+					_unitsOutside = nearestObjects [_helicopter,["CAManBase"],HELI_TAXI_RADIUS_OF_UNITS_TO_LOAD];
 					{ 
 						if (!isNull _x && {alive _x}) then {
 							_bluforOutside = _bluforOutside + 1;
 						};
 					} foreach _unitsOutside;
-					format [_hintHeliNumberOfManOutside, _bluforOutside] remoteExec ["hint",_caller];
+					format [HINT_HELI_TAXI_NUMBER_OF_MAN_OUTSIDE, _bluforOutside] remoteExec ["hint",_caller];
 					_bluforOutside <= 0
 				};
 				// abort script if new waypoints are added (newer call of this script)
@@ -124,9 +111,9 @@ if(isNull _caller) then {
 					"Script Aborted: Helicopter was waiting for everyone at the LZ to board the Helicopter." remoteExec ["hint",_caller];
 					true breakOut "heliscript"
 				};
-				_hintHeliLiftoff remoteExec ["hint",_caller];
+				HINT_HELI_TAXI_LIFTOFF remoteExec ["hint",_caller];
 				// fly to base and turn off engine
-				private _wp2 = _crewGroup addWaypoint [_landingPadBasePos,0];
+				private _wp2 = _crewGroup addWaypoint [_helipadBasePos,0];
 				_wp2 setWaypointType "TR UNLOAD"; 
 				_wp2 setWaypointStatements ["true","this action [""engineOff"", vehicle this];"];
 			};
