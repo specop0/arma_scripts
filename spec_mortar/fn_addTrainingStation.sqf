@@ -15,19 +15,16 @@
 	Returns:
 	true
 */
+#include "const.hpp"
+
 private _parameterCorrect =  params [ ["_object",objNull,[objNull]] ];
 
 if(_parameterCorrect && hasInterface) then {
-	private _crateMortarName = "Spawn Moerser";
-	private _crateMortarAmmoName = "Spawn Moerser Munition";
-	private _crateDeleteName = "Loesche Kisten";
-	private _addActionsName = "Ich bin FAC";
-	private _removeActionsName ="Ich bin kein FAC";
 	// mortar crate
-	[_object,0,["ACE_MainActions","Spec_action_mortar_crateMortar"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionCrateMortar = ["Spec_action_mortar_crateMortar", _crateMortarName, "", {
+	[_object,0,["ACE_MainActions",ACTION_CRATE_MORTAR_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionCrateMortar = [ACTION_CRATE_MORTAR_ID, ACTION_CRATE_MORTAR_NAME, "", {
 		params ["_target","_caller"];
-		private _crate = "UK3CB_BAF_Static_Weapons_L16_Box" createVehicle getPos _target;
+		private _crate = CRATE_MORTAR_CLASS createVehicle getPos _target;
 		_crate addItemCargoGlobal ["ACE_MapTools",3];
 		_crate addItemCargoGlobal ["ACE_microDAGR",3];
 		_crate addItemCargoGlobal ["ACE_Vector",3];
@@ -35,17 +32,17 @@ if(_parameterCorrect && hasInterface) then {
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,0,["ACE_MainActions"], _actionCrateMortar] call ace_interact_menu_fnc_addActionToObject;
 	// mortar ammo crate
-	[_object,0,["ACE_MainActions","Spec_action_mortar_crateMortarAmmo"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionCrateMortar = ["Spec_action_mortar_crateMortarAmmo", _crateMortarAmmoName, "", {
+	[_object,0,["ACE_MainActions",ACTION_CRATE_AMMO_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionCrateMortar = [ACTION_CRATE_AMMO_ID, ACTION_CRATE_AMMO_NAME, "", {
 		params ["_target","_caller"];
-		"UK3CB_BAF_Static_Weapons_L16_ammo" createVehicle getPos _target;
+		CRATE_AMMO_CLASS createVehicle getPos _target;
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,0,["ACE_MainActions"], _actionCrateMortar] call ace_interact_menu_fnc_addActionToObject;
 	// delete crates
-	[_object,0,["ACE_MainActions","Spec_action_mortar_deleteCrates"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionDeleteCrates = ["Spec_action_mortar_deleteCrates", _crateDeleteName, "", {
+	[_object,0,["ACE_MainActions",ACTION_CRATE_DELETE_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionDeleteCrates = [ACTION_CRATE_DELETE_ID, ACTION_CRATE_DELETE_NAME, "", {
 		params ["_target","_caller"];
-		private _crates = nearestObjects [getPos _caller, ["UK3CB_BAF_Static_Weapons_L16_Box","UK3CB_BAF_Static_Weapons_L16_ammo"], 50];
+		private _crates = nearestObjects [getPos _caller, [CRATE_MORTAR_CLASS,CRATE_AMMO_CLASS], 50];
 		{
 			if(!isNull _x) then {
 				deleteVehicle _x;
@@ -54,24 +51,24 @@ if(_parameterCorrect && hasInterface) then {
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,0,["ACE_MainActions"], _actionDeleteCrates] call ace_interact_menu_fnc_addActionToObject;
 	// add actions to player
-	[_object,0,["ACE_MainActions","Spec_action_mortar_addActions"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionAddActions = ["Spec_action_mortar_addActions", _addActionsName, "", {
+	[_object,0,["ACE_MainActions",ACTION_ADD_ACTIONS_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionAddActions = [ACTION_ADD_ACTIONS_ID, ACTION_ADD_ACTIONS_NAME, "", {
 		params ["_target","_caller"];
 		_caller call Spec_mortar_fnc_addActions;
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,0,["ACE_MainActions"], _actionAddActions] call ace_interact_menu_fnc_addActionToObject;
 	// remove actions from player
-	[_object,0,["ACE_MainActions","Spec_action_mortar_removeActions"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionAddActions = ["Spec_action_mortar_removeActions", _removeActionsName, "", {
+	[_object,0,["ACE_MainActions",ACTION_REMOVE_ACTIONS_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionAddActions = [ACTION_REMOVE_ACTIONS_ID, ACTION_REMOVE_ACTIONS_NAME, "", {
 		params ["_target","_caller"];
-		[_caller,1,["ACE_SelfActions","Spec_action_mortar_newTarget"]] call ace_interact_menu_fnc_removeActionFromObject;
-		[_caller,1,["ACE_SelfActions","Spec_action_mortar_liner"]] call ace_interact_menu_fnc_removeActionFromObject;
-		[_caller,1,["ACE_SelfActions","Spec_action_mortar_tip"]] call ace_interact_menu_fnc_removeActionFromObject;
-		[_caller,1,["ACE_SelfActions","Spec_action_mortar_result"]] call ace_interact_menu_fnc_removeActionFromObject;
-		private _mortarTarget = _caller getVariable ["Spec_var_mortar_target",objNull];
+		[_caller,1,["ACE_SelfActions",ACTION_NEW_TARGET_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+		[_caller,1,["ACE_SelfActions",ACTION_LINER_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+		[_caller,1,["ACE_SelfActions",ACTION_TIP_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+		[_caller,1,["ACE_SelfActions",ACTION_SOLUTION_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+		private _mortarTarget = _caller getVariable [MORTAR_TARGET_VAR,objNull];
 		if(!isNull _mortarTarget) then {
 			deleteVehicle _mortarTarget;
-			_caller setVariable ["Spec_var_mortar_target",objNull];
+			_caller setVariable [MORTAR_TARGET_VAR,objNull];
 		};
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,0,["ACE_MainActions"], _actionAddActions] call ace_interact_menu_fnc_addActionToObject;

@@ -15,7 +15,7 @@
 	3: NUMBER - elevation for charge 1 (in mil)
 	4: NUMBER - elevation for charge 2 (in mil)
 */
-#define DEGREE_TO_MIL 17.777777778
+#include "const.hpp"
 
 private _parameterCorrect = params [ ["_target",objNull,[objNull]], ["_caller",objNull,[objNull]] ];
 private _returnValue = [0,0,0,1,2];
@@ -30,9 +30,9 @@ if(_parameterCorrect && {!isNull _target}) then {
 	// direction
 	// v1.55 private _azimuth = _caller getDir _target;
 	private _azimuth = (_xTarget - _xCaller) atan2 (_yTarget - _yCaller);
-	_azimuth = _azimuth * DEGREE_TO_MIL;
+	_azimuth = _azimuth DEGREE_TO_MIL;
 	if(_azimuth < 0.0) then {
-		_azimuth = _azimuth + 360 * DEGREE_TO_MIL;
+		_azimuth = _azimuth + 360 DEGREE_TO_MIL;
 	};
 	_returnValue set [1, round(_azimuth)];
 	// altitude difference (not working with formula)

@@ -14,21 +14,19 @@
 	Returns:
 	true
 */
+#include "const.hpp"
+
 private _parameterCorrect = params [ ["_object",objNull,[objNull]] ];
 if(_parameterCorrect && hasInterface) then {
-	private _newTargetName = "Neues Ziel";
-	private _linerName = "Zeige 4-Liner";
-	private _showTipName = "Daten fuer Tabelle";
-	private _showDataName ="Loesung";
 	// spawn target (event handler etc. only local to FAC)
 	_object = player;
-	[_object,1,["ACE_SelfActions","Spec_action_mortar_newTarget"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionNewTarget = ["Spec_action_mortar_newTarget", _newTargetName, "", {
+	[_object,1,["ACE_SelfActions",ACTION_NEW_TARGET_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionNewTarget = [ACTION_NEW_TARGET_ID, ACTION_NEW_TARGET_NAME, "", {
 		params ["_target","_caller"];
-		private _mortarTarget = _caller getVariable ["Spec_var_mortar_target",objNull];
+		private _mortarTarget = _caller getVariable [MORTAR_TARGET_VAR,objNull];
 		if(isNull _mortarTarget || {damage _mortarTarget == 1}) then {
 			_mortarTarget = "C_Offroad_01_F" createVehicle getPos _caller;
-			_caller setVariable ["Spec_var_mortar_target",_mortarTarget];
+			_caller setVariable [MORTAR_TARGET_VAR,_mortarTarget];
 			// add eventHandler to indicate damage
 			_mortarTarget addEventHandler ["Dammaged",{
 				params ["_unit","_selectionName","_damage"];
@@ -54,10 +52,10 @@ if(_parameterCorrect && hasInterface) then {
 	}, {true}] call ace_interact_menu_fnc_createAction;
 	[_object,1,["ACE_SelfActions"], _actionNewTarget] call ace_interact_menu_fnc_addActionToObject;
 	// show liner
-	[_object,1,["ACE_SelfActions","Spec_action_mortar_liner"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionShowLiner = ["Spec_action_mortar_liner", _linerName, "", {
+	[_object,1,["ACE_SelfActions",ACTION_LINER_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionShowLiner = [ACTION_LINER_ID, ACTION_LINER_NAME, "", {
 		params ["_target","_caller"];
-		private _mortarTarget = _caller getVariable ["Spec_var_mortar_target",objNull];
+		private _mortarTarget = _caller getVariable [MORTAR_TARGET_VAR,objNull];
 		if(isNull _mortarTarget) then {
 			hint "Kein Ziel vorhanden.\nDerjenige, der das Ziel anfordert erhaelt den Liner";
 		} else {
@@ -69,7 +67,7 @@ if(_parameterCorrect && hasInterface) then {
 			private _height = round(_posASL select 2);
 			private _shellType = "HE";
 			private _shellNumbers = 2;
-			// format string in a way that the coord has 4 digits
+			// format string in a way that the coordinates have 4 digits
 			private _xCoordString = "";
 			private _xCoordTemp = _xCoord;
 			while {_xCoordTemp < 1000.0 } do {
@@ -95,13 +93,13 @@ if(_parameterCorrect && hasInterface) then {
 				<t align='left'>Anzahl</t><t align='right'>%7</t>",
 				_commandType,_attackType,_xCoordString,_yCoordString,_height,_shellType,_shellNumbers];
 		};
-	}, {!isNull((_this select 0) getVariable ["Spec_var_mortar_target",objNull])}] call ace_interact_menu_fnc_createAction;
+	}, {!isNull((_this select 0) getVariable [MORTAR_TARGET_VAR,objNull])}] call ace_interact_menu_fnc_createAction;
 	[_object,1,["ACE_SelfActions"], _actionShowLiner] call ace_interact_menu_fnc_addActionToObject;
 	// show tips
-	[_object,1,["ACE_SelfActions","Spec_action_mortar_tip"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionShowTip = ["Spec_action_mortar_tip", _showTipName, "", {
+	[_object,1,["ACE_SelfActions",ACTION_TIP_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionShowTip = [ACTION_TIP_ID, ACTION_TIP_NAME, "", {
 		params ["_target","_caller"];
-		private _mortarTarget = _caller getVariable ["Spec_var_mortar_target",objNull];
+		private _mortarTarget = _caller getVariable [MORTAR_TARGET_VAR,objNull];
 		if(isNull _mortarTarget) then {
 			hint "Kein Ziel vorhanden.\nDerjenige, der das Ziel anfordert erhaelt die Tipps";
 		} else {
@@ -117,13 +115,13 @@ if(_parameterCorrect && hasInterface) then {
 				<t align='left'>Hoehenunterschied</t><t align='right'>%3m</t>",
 				_distance,_azimuth,_altitudeDiff];
 		};
-	}, {!isNull((_this select 0) getVariable ["Spec_var_mortar_target",objNull])}] call ace_interact_menu_fnc_createAction;
+	}, {!isNull((_this select 0) getVariable [MORTAR_TARGET_VAR,objNull])}] call ace_interact_menu_fnc_createAction;
 	[_object,1,["ACE_SelfActions"], _actionShowTip] call ace_interact_menu_fnc_addActionToObject;
 	// show result
-	[_object,1,["ACE_SelfActions","Spec_action_mortar_result"]] call ace_interact_menu_fnc_removeActionFromObject;
-	private _actionShowResult = ["Spec_action_mortar_result", _showDataName, "", {
+	[_object,1,["ACE_SelfActions",ACTION_SOLUTION_ID]] call ace_interact_menu_fnc_removeActionFromObject;
+	private _actionShowResult = [ACTION_SOLUTION_ID, ACTION_SOLUTION_NAME, "", {
 		params ["_target","_caller"];
-		private _mortarTarget = _caller getVariable ["Spec_var_mortar_target",objNull];
+		private _mortarTarget = _caller getVariable [MORTAR_TARGET_VAR,objNull];
 		if(isNull _mortarTarget) then {
 			hint "Kein Ziel vorhanden.\nDerjenige, der das Ziel anfordert erhaelt die Tipps";
 		} else {
@@ -145,7 +143,7 @@ if(_parameterCorrect && hasInterface) then {
 				<t align='center'>Hoehenunterschied von %5m bei einer Entfernung von %6m nicht beruecksichtigt!</t><br />",
 				_azimuth,_charge0,_charge1,_charge2,_altitudeDiff,_distance];
 		};
-	}, {!isNull((_this select 0) getVariable ["Spec_var_mortar_target",objNull])}] call ace_interact_menu_fnc_createAction;
+	}, {!isNull((_this select 0) getVariable [MORTAR_TARGET_VAR,objNull])}] call ace_interact_menu_fnc_createAction;
 	[_object,1,["ACE_SelfActions"], _actionShowResult] call ace_interact_menu_fnc_addActionToObject;
 };
 true
