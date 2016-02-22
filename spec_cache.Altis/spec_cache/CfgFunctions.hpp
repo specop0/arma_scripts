@@ -1,5 +1,5 @@
 class spec_cache {
-	tag = "Spec";
+	tag = "Spec_cache";
 	class init {
 		file="spec_cache";
 		class cacheGroup {};

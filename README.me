@@ -36,8 +36,8 @@ spawn_vehicle.sqf
 spec_cache:
 simple caching script for infantry
 1) spawn groups in editor and set waypoints
-2) add in init field: [this, numberOfGroup ] call Spec_fnc_cacheGroup;
-3) to spawn unit call (e.g. in trigger): numberOfGroup call Spec_fnc_spawnGroup;
+2) add in init field: [this, numberOfGroup ] call Spec_cache_fnc_cacheGroup;
+3) to spawn unit call (e.g. in trigger): numberOfGroup call Spec_cache_fnc_spawnGroup;
 numberOfGroup is unique (otherwise error is shown)
 
 example mission:

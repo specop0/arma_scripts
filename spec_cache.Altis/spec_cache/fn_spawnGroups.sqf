@@ -20,7 +20,7 @@
 if(!isServer) then {
 	// remoteExecute this on the server if called via addAction entry
 	if(_this isEqualType [] && {count _this > 3}) then {
-		_this remoteExec ["Spec_fnc_spawnGroups", 2, false];
+		_this remoteExec ["Spec_cache_fnc_spawnGroups", 2, false];
 	};
 } else {
 	private _scriptHandle = _this spawn {
@@ -44,7 +44,7 @@ if(!isServer) then {
 				_parameter params [ "", "", ["_sleepTime",0.5,[0]] ];
 				private _i = _start;
 				while { _i <= _end } do {
-					[_i] call Spec_fnc_spawnGroup;
+					[_i] call Spec_cache_cache_fnc_spawnGroup;
 					sleep _sleepTime;
 					_i = _i + 1;
 				};

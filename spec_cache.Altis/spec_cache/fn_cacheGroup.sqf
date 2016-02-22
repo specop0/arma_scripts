@@ -19,28 +19,28 @@ if(isServer) then {
 			if(_unitToCache isKindof "Man") then {
 				private _noGroupToCacheRounded = round _noGroupToCache;
 				if(_noGroupToCache == _noGroupToCacheRounded && _noGroupToCache >= 0) then {
-					if(isNil "Spec_var_cachedGroups") then {
-						Spec_var_cachedGroups = [];
+					if(isNil "Spec_cache_var_cachedGroups") then {
+						Spec_cache_var_cachedGroups = [];
 					};
-					private _sizeCachedGroups = count Spec_var_cachedGroups;
+					private _sizeCachedGroups = count Spec_cache_var_cachedGroups;
 					private _noGroupToCacheAvailable = false;
 					if(_noGroupToCache < _sizeCachedGroups) then {
-						if( count (Spec_var_cachedGroups select _noGroupToCache) == 0) then {
-							Spec_var_cachedGroups set [_noGroupToCache, 1];
+						if( count (Spec_cache_var_cachedGroups select _noGroupToCache) == 0) then {
+							Spec_cache_var_cachedGroups set [_noGroupToCache, 1];
 							_noGroupToCacheAvailable = true;
 						};
 					} else {
 						_noGroupToCacheAvailable = true;
 						while {_noGroupToCache >= _sizeCachedGroups} do {
-							Spec_var_cachedGroups pushBack [];
+							Spec_cache_var_cachedGroups pushBack [];
 							_sizeCachedGroups = _sizeCachedGroups + 1;
 						};
-						Spec_var_cachedGroups set [_noGroupToCache, 1];
+						Spec_cache_var_cachedGroups set [_noGroupToCache, 1];
 					};
 					if(_noGroupToCacheAvailable) then {
-						_cachedGroupArray = [_unitToCache, _noGroupToCache] call Spec_fnc_cacheGroup_data;
+						_cachedGroupArray = [_unitToCache, _noGroupToCache] call Spec_cache_fnc_cacheGroup_data;
 						if(count _cachedGroupArray == 5) then {
-							Spec_var_cachedGroups set [_noGroupToCache, _cachedGroupArray];
+							Spec_cache_var_cachedGroups set [_noGroupToCache, _cachedGroupArray];
 							_returnValue = true;
 						} else {
 							"Script Error: Array from unit did not save enough information" call BIS_fnc_error;
