@@ -42,11 +42,9 @@ if(!isServer) then {
 		if(_parameterCorrect) then {
 			if(_start >= 0) then {
 				_parameter params [ "", "", ["_sleepTime",0.5,[0]] ];
-				private _i = _start;
-				while { _i <= _end } do {
-					[_i] call Spec_cache_cache_fnc_spawnGroup;
+				for "_i" from _start to _end do {
+					[_i] call Spec_cache_fnc_spawnGroup;
 					sleep _sleepTime;
-					_i = _i + 1;
 				};
 			} else {
 				["Wrong Parameter: Start value is negative (%1) - expected positive value.", _start] call BIS_fnc_error;

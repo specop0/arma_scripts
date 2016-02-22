@@ -17,10 +17,9 @@ if(isServer) then {
 
 					// save waypoints
 					private _waypointsArray = [];
-					private _i = 0;
 					private _noWaypoints = count (waypoints _group);
 					private ["_waypointPosition","_waypointBehaviour","_waypointCombatMode","_waypointCompletionRadius","_waypointFormation","_waypointSpeed","_waypointTimeout","_waypointType"];
-					while { _i < _noWaypoints } do {
+					for "_i" from 0 to _noWaypoints do {
 						_waypointPosition = waypointPosition [_group,_i];
 						_waypointBehaviour = waypointBehaviour [_group,_i];
 						_waypointCombatMode = waypointCombatMode [_group,_i];
@@ -34,7 +33,6 @@ if(isServer) then {
 							_waypointType = "GETIN NEAREST";
 						};
 						_waypointsArray pushBack [_waypointPosition,_i,_waypointBehaviour,_waypointCombatMode,_waypointCompletionRadius,_waypointFormation,_waypointSpeed,_waypointTimeout,_waypointType];
-						_i = _i + 1;
 					};
 					
 					// delete group
