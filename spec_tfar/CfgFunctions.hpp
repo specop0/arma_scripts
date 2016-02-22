@@ -1,9 +1,9 @@
 class spec_tfar {
-	tag = "Spec";
+	tag = "Spec_tfar";
 	class init {
 		file="spec_tfar";
-		class setTFAR {};
-		class TFAR_init { postInit = 1; };
-		class TFAR_initGroups {};
+		class init { postInit = 1; };
+		class initGroups {};
+		class setFrequencies {};
 	};
 };
