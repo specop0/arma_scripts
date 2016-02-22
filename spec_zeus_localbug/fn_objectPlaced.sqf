@@ -27,7 +27,7 @@ if(_parameterCorrect && isServer) then {
 	if (!isNull _objectGroup) then {
 		// test if unit is spawned with curator object or group module
 		if(count (units _objectGroup) == count (crew _objectPlaced)) then {
-			private _id = [] call Spec_fnc_getNextOwnerID;
+			private _id = [] call Spec_zeus_fnc_getNextOwnerID;
 			_objectGroup setGroupOwner _id;
 		};
 	};

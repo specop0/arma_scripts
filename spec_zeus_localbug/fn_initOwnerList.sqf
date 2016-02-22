@@ -11,10 +11,10 @@
 
 if(isServer) then {
 	// init ownerList
-	if(isNil "Spec_var_ownerList") then {
-		Spec_var_ownerList = [];
+	if(isNil "Spec_zeus_var_ownerList") then {
+		Spec_zeus_var_ownerList = [];
 	};
-	if(count Spec_var_ownerList == 0) then {
+	if(count Spec_zeus_var_ownerList == 0) then {
 		private _scriptHandle = [] spawn {
 			// sleep because otherwise the serverID is 0
 			sleep 20;
@@ -27,10 +27,10 @@ if(isServer) then {
 				};
 			} forEach allUnits;
 			if(_serverID != 0) then {
-				Spec_var_ownerList pushBack _serverID;
+				Spec_zeus_var_ownerList pushBack _serverID;
 			} else {
 				// serverID seems often to be 2 (always?)
-				Spec_var_ownerList pushBack 2;
+				Spec_zeus_var_ownerList pushBack 2;
 			};
 
 			// push back headless clients
@@ -39,13 +39,13 @@ if(isServer) then {
 				if(!isNull _x && {typeOf _x == "HeadlessClient_F"}) then {
 					_hcID = owner _x;
 					if(_hcID != 0 && _hcID != _serverID) then {
-						Spec_var_ownerList pushBack _hcID;
+						Spec_zeus_var_ownerList pushBack _hcID;
 					};
 				};
 			} forEach allPlayers;
 
 			// assign AI groups to Server and HC (if HC exist)
-			if(count Spec_var_ownerList > 1) then {
+			if(count Spec_zeus_var_ownerList > 1) then {
 				private _playerGroups = [];
 				{
 					if (!isNull _x && {!((group _x) in _playerGroups)}) then {
@@ -62,7 +62,7 @@ if(isServer) then {
 							if (_x isKindOf "Man") exitWith {_groupHasAI = true};
 						} forEach (units _x);
 						if(_groupHasAI) then {
-							_id = [] call Spec_fnc_getNextOwnerID;
+							_id = [] call Spec_zeus_fnc_getNextOwnerID;
 							_x setGroupOwner _id;
 						};
 					};

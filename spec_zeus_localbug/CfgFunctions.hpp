@@ -1,5 +1,5 @@
 class spec_zeus {
-	tag = "Spec";
+	tag = "Spec_zeus";
 	class init {
 		file = "spec_zeus";
 		class assignToAllCurators {};

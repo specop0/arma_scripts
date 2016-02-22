@@ -14,8 +14,8 @@
 */
 private _returnValue = 2;
 if(isServer) then {
-	if(!isNil "Spec_var_ownerList") then {
-		private _size = count Spec_var_ownerList;
+	if(!isNil "Spec_zeus_var_ownerList") then {
+		private _size = count Spec_zeus_var_ownerList;
 		// if multiple entries choose according to Spec_var_ownerIndex
 		if(_size > 1) then {
 			if(isNil "Spec_var_ownerIndex") then{
@@ -30,11 +30,11 @@ if(isServer) then {
 				// TODO AI not on server? then index = 1 if _size > 1
 				Spec_var_ownerIndex = 0;
 			};
-			_returnValue = Spec_var_ownerList select _i;
+			_returnValue = Spec_zeus_var_ownerList select _i;
 		} else {
 			// if only one entry exists use this
 			if(_size == 1) then {
-				_returnValue = Spec_var_ownerList select 0;
+				_returnValue = Spec_zeus_var_ownerList select 0;
 			};
 		};
 	};

@@ -21,7 +21,7 @@ if(_parameterCorrect && isServer) then {
 	} forEach (allCurators - [_curator]);
 	// check if unit has AI and change ownership
 	if (!isNull _groupPlaced) then {
-		private _id = [] call Spec_fnc_getNextOwnerID;
+		private _id = [] call Spec_zeus_fnc_getNextOwnerID;
 		_groupPlaced setGroupOwner _id;
 	};
 };

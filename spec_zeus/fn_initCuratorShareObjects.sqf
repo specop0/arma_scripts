@@ -13,8 +13,8 @@
 if(hasInterface) then {
 	// add EventHandler to Curator Modules
 	{
-		_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_fnc_groupPlaced",2,false]; }];
-		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_fnc_objectPlaced",2,false]; }];
+		_x addEventHandler ["CuratorGroupPlaced",{ _this remoteExecCall ["Spec_zeus_fnc_groupPlaced",2,false]; }];
+		_x addEventHandler ["CuratorObjectPlaced",{ _this remoteExecCall ["Spec_zeus_fnc_objectPlaced",2,false]; }];
 		_x addEventHandler ["CuratorObjectEdited",{
 			params ["_curator","_entity"];
 			if(!local _entity) then {
@@ -24,8 +24,8 @@ if(hasInterface) then {
 		}];
 	} forEach allCurators;
 	// assign Player to Curator Modules
-	[player] remoteExec ["Spec_fnc_assignToAllCurators",2];
-	player addEventHandler ["Respawn", {_this remoteExec ["Spec_fnc_assignToAllCurators",2];}];
+	[player] remoteExec ["Spec_zeus_fnc_assignToAllCurators",2];
+	player addEventHandler ["Respawn", {_this remoteExec ["Spec_zeus_fnc_assignToAllCurators",2];}];
 };
 if(isServer) then {
 	// add allUnits to allCurators
