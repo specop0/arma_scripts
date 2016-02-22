@@ -16,12 +16,12 @@
 
 private _parameterCorrect = params [ ["_sign",objNull,[objNull]], ["_noPictures",-1,[0]], ["_pictureDirectory","pictures",["STRING"]] ];
 if(!isNull _sign) then {
-	_sign addAction ["Next Slide", Spec_fnc_changeSlide, [1, _pictureDirectory], 2];
-	_sign addAction ["Previous Slide", Spec_fnc_changeSlide, [-1, _pictureDirectory], 1];
+	_sign addAction ["Next Slide", Spec_presentation_fnc_changeSlide, [1, _pictureDirectory], 2];
+	_sign addAction ["Previous Slide", Spec_presentation_fnc_changeSlide, [-1, _pictureDirectory], 1];
 	
 	if(isServer) then {
-		_sign setVariable ["Spec_var_presentationNumberOfSlides", _noPictures];
-		[_sign, _sign, 0, [0, _pictureDirectory]] call Spec_fnc_changeSlide;
+		_sign setVariable ["Spec_presentation_var_numberOfSlides", _noPictures];
+		[_sign, _sign, 0, [0, _pictureDirectory]] call Spec_presentation_fnc_changeSlide;
 	};
 } else {
 	"Wrong Parameter: expected [object] or [object,pictureDirectoryString]" call BIS_fnc_error;

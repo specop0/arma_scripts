@@ -25,8 +25,8 @@ if(isServer) then {
 	_addActionParameterCorrect = (_this select 3) params [ ["_type",0,[0]], ["_pictureDirectory","pictures",["STRING"]] ];
 	if(_parameterCorrect && _addActionParameterCorrect) then {
 		private ["_pictureNumber","_validSlide","_numberOfSlides"];
-		_numberOfSlides = _sign getVariable ["Spec_var_presentationNumberOfSlides", -1];
-		_pictureNumber = _sign getVariable ["Spec_var_presentationCurrentSlide", 0];
+		_numberOfSlides = _sign getVariable ["Spec_presentation_var_numberOfSlides", -1];
+		_pictureNumber = _sign getVariable ["Spec_presentation_var_currentSlide", 0];
 		_validSlide = true;
 		switch (_type) do {
 			case 1: {
@@ -44,8 +44,8 @@ if(isServer) then {
 			"Currently last slide is shown\nCould not load next slide." remoteExec ["hint", _caller];
 		} else {
 			if(_validSlide) then {
-				if([_sign, _pictureNumber, _pictureDirectory] call Spec_fnc_showSlide) then {
-					_sign setVariable ["Spec_var_presentationCurrentSlide", _pictureNumber];
+				if([_sign, _pictureNumber, _pictureDirectory] call Spec_presentation_fnc_showSlide) then {
+					_sign setVariable ["Spec_presentation_var_currentSlide", _pictureNumber];
 				};
 			} else {
 				"Currently first slide is shown.\nCould not load previous slide." remoteExec ["hint", _caller];
@@ -55,6 +55,6 @@ if(isServer) then {
 		"Script Error: parsing arguments failed" call BIS_fnc_error;
 	};
 } else {
-	_this remoteExec ["Spec_fnc_changeSlide", 2];
+	_this remoteExec ["Spec_presentation_fnc_changeSlide", 2];
 };
 true
