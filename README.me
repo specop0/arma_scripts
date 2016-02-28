@@ -45,6 +45,13 @@ example mission:
 - go near offroad to spawn patrolling team
 - go to nearest armored vehicle to spawn crew at furthest armored vehicle (gets in and drives off)
 
+spec_cargoDrop:
+ACE Cargo droppable in flight with Parachute
+1) in init of plane: [this] call Spec_cargoDrop_fnc_addParaDropEvent;
+- pilot and gunner (with EventHander GetIn) can drop ACE Cargo (interaction with plane)
+- dropped cargo will land safely (see addParachute)
+optional: small crates (NATO_Box_Base) can be packed into big supply crate ([player] call Spec_cargoDrop_fnc_addPackAction)
+
 spec_crate:
 template for ammo crates
 
