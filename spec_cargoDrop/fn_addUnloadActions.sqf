@@ -33,7 +33,7 @@ if(_parameterCorrect) then {
 		[
 			format [_actionUnloadID,_forEachIndex],
 			_name,
-			"",
+			SPEC_ACTION_UNPACK_ICON,
 			{
 				_this remoteExec ["Spec_cargoDrop_fnc_unload",2];
 			},

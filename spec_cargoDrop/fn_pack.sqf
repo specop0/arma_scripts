@@ -26,7 +26,15 @@ if(!isNull _unit) then {
 	// search for nearest crates
 	private _posATL = getPosATL _unit;
 	if(_currentCrate == 0) then {
-		_nearCrates = nearestObjects [_posATL, ["NATO_Box_Base"], CRATE_RADIUS_TO_SEARCH];
+		// search for crates which are not hidden (attached to other crate)
+		private _allNearCrates = nearestObjects [_posATL, ["NATO_Box_Base"], CRATE_RADIUS_TO_SEARCH];
+		_nearCrates = [];
+		{
+			if(!isNull _x && {!isObjectHidden _x}) then {
+				_nearCrates pushBack _x;
+			};
+			if(count _nearCrates == MAX_CRATES) exitWith {};
+		} forEach _allNearCrates;
 	};
 	_nearCrates resize ((count _nearCrates) min MAX_CRATES);
 

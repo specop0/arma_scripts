@@ -4,10 +4,12 @@
 #define SPEC_ATTACHED_CRATES_VAR "Spec_var_crateDrop_attachedCrates"
 
 #define SPEC_ACTION_UNLOAD_IDS "Spec_action_crateDrop_unload_%1"
+#define SPEC_ACTION_UNLOAD_MAX_ID 10
 #define SPEC_ACTION_UNLOAD_DISTANCE_TO_PLANE 20.0
 
 #define SPEC_ACTION_UNPACK_ID "Spec_action_crateDrop_unpack"
 #define SPEC_ACTION_UNPACK_NAME "Kisten entpacken"
+#define SPEC_ACTION_UNPACK_ICON "spec_cargoDrop\Icon_unload.paa"
 
 #define SPEC_ACTION_PACK_ID "Spec_action_crateDrop_pack"
 #define SPEC_ACTION_PACK_NAME "Kisten packen"
