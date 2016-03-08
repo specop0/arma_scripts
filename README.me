@@ -52,6 +52,14 @@ ACE Cargo droppable in flight with Parachute
 - dropped cargo will land safely (see addParachute)
 optional: small crates (NATO_Box_Base) can be packed into big supply crate ([player] call Spec_cargoDrop_fnc_addPackAction)
 
+spec_checkpoint:
+Simple AI checkpoint script with smuggler (and intel) via ACE action.
+- in Waypoint add to onAction: [this,"marker_target"] call Spec_checkpoint_fnc_addPassCheckAction
+(then vehicle and unit has ace action to pass the checkpoint and drives to given marker position)
+- in vehicle of smuggler add: [this call Spec_checkpoint_fnc_loadSmugglerItems to load nearby items (see const.hpp) into ace cargo
+- in initPlayerLocal of HQ add: [this] call Spec_checkpoint_fnc_addTakeIntelAction to show how many smuggler reached their target
+- to take (intel objects) via ace action add: [this] call Spec_checkpoint_fnc_addTakeIntelAction
+
 spec_crate:
 template for ammo crates
 
