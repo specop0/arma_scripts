@@ -22,7 +22,7 @@ _this spawn {
 		// test if parachute is still needed after delay
 		if !(getPosATL _object select 2 <= 0.01) then {
 			// spawn and attach parachute (createVehicle position has offset from current position)
-			private  _objectCurPos = getPosASL _object;
+			private _objectCurPos = getPosASL _object;
 			private _objectOldPos = getPosASL _object;
 			private _parachute =  createVehicle ["B_Parachute_02_F", getPosATL _object, [], 0, "NONE"];
 			_parachute setPosASL _objectOldPos;
@@ -39,11 +39,8 @@ _this spawn {
 				} else {
 					// check if parachute / object is stuck in tree
 					if (_objectOldPos distance _objectCurPos < 2) then {
-						_objectCurPos = getPosASL _object;
-						_objectCurPos set [2,0];
 						detach _object;
 						deleteVehicle _parachute;
-						_object setPosATL _objectCurPos;
 						true
 					} else {
 						_objectOldPos = _objectCurPos;
