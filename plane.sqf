@@ -2,7 +2,7 @@
 	Author: SpecOp0
 
 	Description:
-	Spawn pilots into a plane which then takes off and follows assigns waypoints (with flyInHeight).
+	Spawn pilots into a plane which then takes off and follows assigned waypoints (with flyInHeight).
 	For use in a addAction entry, most parameter are hardcoded.
 
 	Parameter(s):
@@ -36,10 +36,10 @@ if(_parameterCorrect) then {
 		_waypointsPositions pushBack _pos;
 		if(_pos select 0 == 0 && _pos select 1 == 0) then {
 			_waypointsParseError = true;
-			hint format ["marker %1 missing or at (0,0,z)", _x];
+			hint format ["marker %1 missing or at (0,0)", _x];
 		};
 	} foreach _markerNameWaypoints;
-
+	
 	if(!_waypointsParseError) then {
 		private _bluforOutside = 0;
 		private _unitsOutside = [];
@@ -48,7 +48,7 @@ if(_parameterCorrect) then {
 			_bluforOutside = 0;
 			_unitsOutside = nearestObjects [_airplane,["CAManBase"],_radiusOfUnitsToLoad];
 			{ 
-				if (damage _x <= 0.5) then {
+				if (!isNull _x && {alive _x}) then {
 					_bluforOutside = _bluforOutside + 1;
 				};
 			} foreach _unitsOutside;
