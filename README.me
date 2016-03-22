@@ -60,6 +60,12 @@ Simple AI checkpoint script with smuggler (and intel) via ACE action.
 - in initPlayerLocal of HQ add: [this] call Spec_checkpoint_fnc_addTakeIntelAction to show how many smuggler reached their target
 - to take (intel objects) via ace action add: [this] call Spec_checkpoint_fnc_addTakeIntelAction
 
+spec_construction:
+Simple construction script for static objects. A player or object can have an interaction to initiate construction progress (for a single object).
+In addition a object can be assigned multiple objects of one type (inclusively race conditions).
+- [truck,typeOf object, name of object, (number of animation),(number of objects)] call Spec_construct_fnc_objectAddConstructionStation;
+- [player,actionID, name of action, typeOf object, (number of animation)] call Spec_construct_fnc_playerAddConstructAction;
+
 spec_crate:
 template for ammo crates
 
