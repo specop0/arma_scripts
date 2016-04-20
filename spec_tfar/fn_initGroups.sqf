@@ -55,14 +55,12 @@ if(_parameterCorrect) then {
 			_callsign = "Weiss";
 			_BFTicon = "b_med";
 		};
-		
 		case 6 : {
 			_swFreq = ["142","140"];
 			_lrFreq = ["42","30","31","41","43","51","61"];
 			_callsign = "Adler";
 			_BFTicon = "b_plane";
 		};
-		
 		case 7 : {
 			_swFreq = ["143","140"];
 			_lrFreq = ["43","30","31","41","42","51","61"];
@@ -93,14 +91,12 @@ if(_parameterCorrect) then {
 			_callsign = "Bronze - 1";
 			_BFTicon = "b_armor";
 		};
-		
 		case 12 : {
 			_swFreq = ["161"];
 			_lrFreq = ["61","30","31","41","42","43","51"];
 			_callsign = "Bronze - 2";
 			_BFTicon = "b_armor";
 		};
-		
 		default {
 			_swFreq = ["100"];
 			_lrFreq = ["30"];
