@@ -25,76 +25,82 @@ if(_parameterCorrect) then {
 	switch _groupID do {
 		case 0 : {
 			_swFreq = ["100"];
-			_lrFreq = ["30","31","32","41","42","43","51","52"];
+			_lrFreq = ["30","31","41","42","43","51","61"];
 			_callsign = "Gelb";
 			_BFTicon = "b_hq";
 		};
 		case 1 : {
-			_swFreq = ["111","110","112","113"];
+			_swFreq = ["111","110","112","113","114"];
 			_lrFreq = ["31","30"];
 			_callsign = "Gruen";
 		};
 		case 2 : {
-			_swFreq = ["112","110","111","113"];
+			_swFreq = ["112","110","111","113","114"];
 			_lrFreq = ["31","30"];
 			_callsign = "Schwarz";
 		};
 		case 3 : {
-			_swFreq = ["113","110","111","112"];
+			_swFreq = ["113","110","111","112","114"];
 			_lrFreq = ["31","30"];
 			_callsign = "Blau";
 		};
 		case 4 : {
-			_swFreq = ["121","120","122","123"];
-			_lrFreq = ["32","30"];
-			_callsign = "Braun";
-		};
-		case 5 : {
-			_swFreq = ["122","120","121","123"];
-			_lrFreq = ["32","30"];
+			_swFreq = ["114","110","111","112","113"];
+			_lrFreq = ["31","30"];
 			_callsign = "Rot";
 		};
-		case 6 : {
-			_swFreq = ["123","120","121","122"];
-			_lrFreq = ["32","30"];
-			_callsign = "Violett";
-		};
-		case 7 : {
+		case 5 : {
 			_swFreq = ["141","140"];
-			_lrFreq = ["41","30","31","32","42","43","51","52"];
+			_lrFreq = ["41","30","31","42","43","51","61"];
 			_callsign = "Weiss";
 			_BFTicon = "b_med";
 		};
-		case 8 : {
+		
+		case 6 : {
 			_swFreq = ["142","140"];
-			_lrFreq = ["42","30","31","32","41","43","51","52"];
+			_lrFreq = ["42","30","31","41","43","51","61"];
 			_callsign = "Adler";
 			_BFTicon = "b_plane";
 		};
+		
+		case 7 : {
+			_swFreq = ["143","140"];
+			_lrFreq = ["43","30","31","41","42","51","61"];
+			_callsign = "Silber - 1";
+			_BFTicon = "b_service";
+		};
+		case 8 : {
+			_swFreq = ["143","140"];
+			_lrFreq = ["43","30","31","41","42","51","61"];
+			_callsign = "Silber - 2";
+			_BFTicon = "b_service";
+		};
 		case 9 : {
 			_swFreq = ["143","140"];
-			_lrFreq = ["43","30","31","32","41","42","51","52"];
-			_callsign = "Silber - Habicht";
+			_lrFreq = ["43","30","31","41","42","51","61"];
+			_callsign = "Silber - 3";
 			_BFTicon = "b_service";
 		};
 		case 10 : {
-			_swFreq = ["143","140"];
-			_lrFreq = ["43","30","31","32","41","42","51","52"];
-			_callsign = "Silber - Bussard";
-			_BFTicon = "b_service";			
-		};
-		case 11 : {
-			_swFreq = ["151","150","152"];
-			_lrFreq = ["51","30","31","32","52"];
+			_swFreq = ["151"];
+			_lrFreq = ["51","30","31","41","42","43","61"];
 			_callsign = "Gold";
 			_BFTicon = "b_recon";
 		};
-		case 12 : {
-			_swFreq = ["152","150","151"];
-			_lrFreq = ["52","30","31","32","51"];
-			_callsign = "Grau";
-			_BFTicon = "b_recon";
+		case 11 : {
+			_swFreq = ["161"];
+			_lrFreq = ["61","30","31","41","42","43","51"];
+			_callsign = "Bronze - 1";
+			_BFTicon = "b_armor";
 		};
+		
+		case 12 : {
+			_swFreq = ["161"];
+			_lrFreq = ["61","30","31","41","42","43","51"];
+			_callsign = "Bronze - 2";
+			_BFTicon = "b_armor";
+		};
+		
 		default {
 			_swFreq = ["100"];
 			_lrFreq = ["30"];
