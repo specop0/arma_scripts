@@ -34,13 +34,20 @@ if(isNull _caller) then {
 } else {
     if( isNull _helicopter || (_helipadBasePos select 0 == 0 && _helipadBasePos select 1 == 0 && _helipadBasePos select 2 == 0) ) then {
         format ["Script Error: Helicopter '%1' and/or Helipad '%2' is null", str _helicopter, str _markerNameBase] remoteExec ["hint",_caller];
-    } else {    
-        private _crewGroup = group _helicopter;
+    } else {
+        private _crewGroup = group driver _helicopter;
+        _crewGroup setGroupOwner 2;
         
         if(isNull _crewGroup) then {
             format ["Script Error: Crew of Helicopter '%1' not found", str _helicopter] remoteExec ["hint",_caller];
-        } else {    
-            private _helipad = "Land_HelipadEmpty_F" createVehicle position _caller;
+        } else {
+            private _helipad = _helicopter getVariable [HELIPAD_GET_VARIABLE,objNull];
+            if(isNull _helipad) then{
+                _helipad = "Land_HelipadEmpty_F" createVehicle (position _caller);
+                _helicopter setVariable [HELIPAD_GET_VARIABLE,_helipad];
+            } else {
+                _helipad setPos (position _caller);
+            };
             private _helipadPos = getPos _helipad;
             
             // save positions for retransfer
@@ -56,6 +63,7 @@ if(isNull _caller) then {
             _crewGroup setCurrentWaypoint _wp0;
             private _wp1 = _crewGroup addWaypoint [_helipadPos,0];
             _wp1 setWaypointType "TR UNLOAD"; 
+            _wp1 setWaypointTimeout [7,7,7];
             HINT_MEDEVAC_ON_MOVE remoteExec ["hint",_caller];    
 
             private _waypointsOfThisScript = [_wp0 select 1, _wp1 select 1];

@@ -2,6 +2,8 @@
 #define MEDEVAC_ID weiss
 #define MEDEVAC_HELIPAD_BASE_ID landingpad_weiss
 
+// name of get/setVariable
+#define HELIPAD_GET_VARIABLE "helipad"
 // hints
 #define HINT_MEDEVAC_ON_MOVE "Hier Weiss\nSind auf dem Weg zu ihrer Position.\nWeiss Ende."
 #define HINT_MEDEVAC_NEAR_LZ "Hier Weiss\nNaehern uns der LZ. Werfen Sie violetten Rauch.\nWeiss Ende."

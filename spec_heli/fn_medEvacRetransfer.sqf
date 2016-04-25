@@ -27,11 +27,14 @@ if(isNil "_helicopter" || {isNull _helicopter}) then {
             params ["_target","_caller"];
             private _landingPadPos = _target getVariable [MEDEVAC_HELIPAD_LAST_LZ_VAR, position _target];
             private _landingPadBasePos =  _target getVariable [MEDEVAC_HELIPAD_BASE_VAR, position _target];
-            private _crewGroup = group _target;
+            private _crewGroup = group driver _target;
+            _crewGroup setGroupOwner 2;
             private _wp0 = _crewGroup addWaypoint [_landingPadPos,0];
             _wp0 setWaypointType "TR UNLOAD";
+            _wp0 setWaypointTimeout [7,7,7];
             private _wp1 = _crewGroup addWaypoint [_landingPadBasePos,0];
             _wp1 setWaypointType "TR UNLOAD";
+            _wp1 setWaypointTimeout [7,7,7];
         }, {true}] call ace_interact_menu_fnc_createAction;
         [_helicopter,1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
     };
