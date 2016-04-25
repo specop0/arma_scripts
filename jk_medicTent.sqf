@@ -42,7 +42,7 @@ JK_fnc_buildTent = {
 JK_buildTentProgressBar = {
     params ["_JKvehicle"];
     private _position = (getPos _JKvehicle) findEmptyPosition [5, 20, "MASH"];
-	if (_position isEqualTo []) exitWith {hint "Nicht genug Platz zum Aufbau des Zeltes vorhanden."};
+    if (_position isEqualTo []) exitWith {hint "Nicht genug Platz zum Aufbau des Zeltes vorhanden."};
     player playMove JK_BuildAnimation;
     [JK_BuildTime, _this, JK_fnc_buildTent, {(_this select 0) select 1 switchMove ""}, "Baue medzinisches Zelt auf"] call ace_common_fnc_progressBar;
 };
@@ -54,5 +54,5 @@ _action = ["JK_BuildTent", "Baue medzinisches Zelt auf", "",
 
 {
     [_x, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-	nil
+    nil
 } forEach JK_Medical_Vehicles;

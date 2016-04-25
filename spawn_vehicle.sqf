@@ -1,16 +1,16 @@
 /*
-	Author: SpecOp0
+    Author: SpecOp0
 
-	Description:
-	Spawns vehicle (on ground) if no vehicle of same type is nearby (10m radius).
-	For use in a addAction entry, vehicle and spawn parameter hardcoded.
+    Description:
+    Spawns vehicle (on ground) if no vehicle of same type is nearby (10m radius).
+    For use in a addAction entry, vehicle and spawn parameter hardcoded.
 
-	Parameter(s):
-	0: -
-	1: OBJECT - player who wants to spawn the object (i.e. a player who chooses the menu entry)
+    Parameter(s):
+    0: -
+    1: OBJECT - player who wants to spawn the object (i.e. a player who chooses the menu entry)
 
-	Returns:
-	true
+    Returns:
+    true
 */
 
 comment "Edit these Entries";
@@ -34,22 +34,22 @@ params ["",["_caller",objNull]];
 private _spawnPos = getMarkerPos _markerVehicleSpawn;
 
 if(isNull _caller) then {
-	hint "Script Error: Unit which called for Vehicle is null/has no Position attached";
+    hint "Script Error: Unit which called for Vehicle is null/has no Position attached";
 } else {
-	if( (_spawnPos select 0 == 0 && _spawnPos select 1 == 0 && _spawnPos select 2 == 0)) then {
-		hint format ["Script Error: Marker '%1' not found",_markerVehicleSpawn];
-	} else {	
-		private _nearestObject = nearestObjects [_spawnPos,[_vehicleType],10];
+    if( (_spawnPos select 0 == 0 && _spawnPos select 1 == 0 && _spawnPos select 2 == 0)) then {
+        hint format ["Script Error: Marker '%1' not found",_markerVehicleSpawn];
+    } else {    
+        private _nearestObject = nearestObjects [_spawnPos,[_vehicleType],10];
 
-		if(count _nearestObject > 0) then {
-			hint _hintSpawnPosBlocked;
-		} else {
-			private _vehicle = _vehicleType createVehicle _spawnPos;
-			_vehicle setDir _vehicleSpawnerDirection;
-			clearItemCargoGlobal _vehicle;
-			_vehicle addItemCargo ["ItemGPS",1];
-			hint _hintSpawnSucessfull; 
-		};
-	};
+        if(count _nearestObject > 0) then {
+            hint _hintSpawnPosBlocked;
+        } else {
+            private _vehicle = _vehicleType createVehicle _spawnPos;
+            _vehicle setDir _vehicleSpawnerDirection;
+            clearItemCargoGlobal _vehicle;
+            _vehicle addItemCargo ["ItemGPS",1];
+            hint _hintSpawnSucessfull; 
+        };
+    };
 };
 true

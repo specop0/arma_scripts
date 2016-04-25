@@ -7,9 +7,9 @@ private _mg = "hlc_lmg_m60";
 
 
 if(_parameterCorrect && isServer) then {
-	clearWeaponCargoGlobal _crate;
-	_crate addWeaponCargoGlobal [_standardWeapon,4];
-	_crate addWeaponCargoGlobal [_standardWeaponGL,1];
-	_crate addWeaponCargoGlobal [_lmg,2];
-	_crate addWeaponCargoGlobal [_mg,1];
+    clearWeaponCargoGlobal _crate;
+    _crate addWeaponCargoGlobal [_standardWeapon,4];
+    _crate addWeaponCargoGlobal [_standardWeaponGL,1];
+    _crate addWeaponCargoGlobal [_lmg,2];
+    _crate addWeaponCargoGlobal [_mg,1];
 };
