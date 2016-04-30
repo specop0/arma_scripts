@@ -48,7 +48,7 @@ if(isNull _caller) then {
                 private _helipad = _helicopter getVariable [HELIPAD_GET_VARIABLE,objNull];
                 if(isNull _helipad) then{
                     _helipad = "Land_HelipadEmpty_F" createVehicle _helipadMarkerPos;
-                    _helicopter setVariable [HELIPAD_GET_VARIABLE,_helipad];
+                    _helicopter setVariable [HELIPAD_GET_VARIABLE,_helipad, true];
                 } else {
                     _helipad setPosATL [_helipadMarkerPos select 0,_helipadMarkerPos select 1,0];
                 };
@@ -62,8 +62,8 @@ if(isNull _caller) then {
                 _oldWP setWaypointStatements ["true",""];
                 _crewGroup setCurrentWaypoint _wp0;
                 private _wp1 = _crewGroup addWaypoint [_helipadPos,0];
-                _wp1 setWaypointType "TR UNLOAD"; 
-                _wp1 setWaypointTimeout [7,7,7];
+                _wp1 setWaypointType "MOVE"; 
+                _wp1 setWaypointStatements ["true","vehicle this land 'GET IN';"];
                 HINT_HELI_TAXI_ON_MOVE remoteExec ["hint",_caller];    
 
                 private _waypointsOfThisScript = [_wp0 select 1, _wp1 select 1];                
@@ -122,9 +122,8 @@ if(isNull _caller) then {
                 HINT_HELI_TAXI_LIFTOFF remoteExec ["hint",_caller];
                 // fly to base and turn off engine
                 private _wp2 = _crewGroup addWaypoint [_helipadBasePos,0];
-                _wp2 setWaypointType "TR UNLOAD"; 
-                _wp2 setWaypointTimeout [7,7,7];
-                _wp2 setWaypointStatements ["true","this action [""engineOff"", vehicle this];"];
+                _wp2 setWaypointType "MOVE"; 
+                _wp2 setWaypointStatements ["true","vehicle this land 'LAND';"];
             };
         }; 
     };

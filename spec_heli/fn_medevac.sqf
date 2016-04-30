@@ -34,7 +34,7 @@ if(isNull _caller) then {
 } else {
     if( isNull _helicopter || (_helipadBasePos select 0 == 0 && _helipadBasePos select 1 == 0 && _helipadBasePos select 2 == 0) ) then {
         format ["Script Error: Helicopter '%1' and/or Helipad '%2' is null", str _helicopter, str _markerNameBase] remoteExec ["hint",_caller];
-    } else {
+    } else {    
         private _crewGroup = group driver _helicopter;
         _crewGroup setGroupOwner 2;
         
@@ -44,7 +44,7 @@ if(isNull _caller) then {
             private _helipad = _helicopter getVariable [HELIPAD_GET_VARIABLE,objNull];
             if(isNull _helipad) then{
                 _helipad = "Land_HelipadEmpty_F" createVehicle (position _caller);
-                _helicopter setVariable [HELIPAD_GET_VARIABLE,_helipad];
+                _helicopter setVariable [HELIPAD_GET_VARIABLE,_helipad, true];
             } else {
                 _helipad setPos (position _caller);
             };
@@ -62,8 +62,8 @@ if(isNull _caller) then {
             _oldWP setWaypointStatements ["true",""];
             _crewGroup setCurrentWaypoint _wp0;
             private _wp1 = _crewGroup addWaypoint [_helipadPos,0];
-            _wp1 setWaypointType "TR UNLOAD"; 
-            _wp1 setWaypointTimeout [7,7,7];
+            _wp1 setWaypointType "MOVE"; 
+            _wp1 setWaypointStatements ["true","vehicle this land 'GET IN';"];
             HINT_MEDEVAC_ON_MOVE remoteExec ["hint",_caller];    
 
             private _waypointsOfThisScript = [_wp0 select 1, _wp1 select 1];
@@ -122,21 +122,16 @@ if(isNull _caller) then {
             HINT_MEDEVAC_LIFTOFF remoteExec ["hint",_caller];
             // fly to base, turn off engine and fully heal embarked units
             private _wp2 = _crewGroup addWaypoint [_helipadBasePos,0];
-            _wp2 setWaypointType "TR UNLOAD"; 
+            _wp2 setWaypointType "MOVE";
             _wp2 setWaypointStatements ["true","
                 if(local this) then {
-                    this action [""engineOff"", vehicle this];
-                    private _scriptHandle = [this] spawn {
-                        params [""_crewLeader""];
-                        sleep 1;
-                        private _bluforOutside = nearestObjects [position _crewLeader,[""CAManBase""],30];
-                        {
-                            if(!isNull _x) then {
-                                [_crewLeader,_x] call ACE_medical_fnc_treatmentAdvanced_fullHeal;
-                                sleep 0.5;
-                            };
-                        } forEach _bluforOutside;
+                private _bluforOutside = nearestObjects [position this,[""CAManBase""],30];
+                {
+                    if(!isNull _x && isPlayer _x) then {
+                        [this,_x] call ACE_medical_fnc_treatmentAdvanced_fullHeal;
                     };
+                } forEach _bluforOutside + (crew vehicle this);
+                vehicle this land 'LAND';
                 };
             "];
             

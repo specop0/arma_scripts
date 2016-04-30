@@ -30,11 +30,11 @@ if(isNil "_helicopter" || {isNull _helicopter}) then {
             private _crewGroup = group driver _target;
             _crewGroup setGroupOwner 2;
             private _wp0 = _crewGroup addWaypoint [_landingPadPos,0];
-            _wp0 setWaypointType "TR UNLOAD";
-            _wp0 setWaypointTimeout [7,7,7];
+            _wp0 setWaypointType "MOVE"; 
+            _wp0 setWaypointStatements ["true","vehicle this land 'GET IN';"];
             private _wp1 = _crewGroup addWaypoint [_landingPadBasePos,0];
-            _wp1 setWaypointType "TR UNLOAD";
-            _wp1 setWaypointTimeout [7,7,7];
+            _wp1 setWaypointType "MOVE"; 
+            _wp1 setWaypointStatements ["true","vehicle this land 'GET IN';"];
         }, {true}] call ace_interact_menu_fnc_createAction;
         [_helicopter,1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
     };
