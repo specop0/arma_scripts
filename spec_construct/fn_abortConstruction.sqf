@@ -12,10 +12,9 @@
 */
 #include "const.hpp"
 
-private _parameterCorrect = params [ ["_unit",objNull,[objNull]], ["_buildingAvailableBoolString","",[""]] ];
+private _parameterCorrect = params [ ["_unit",objNull,[objNull]] ];
 
 if(_parameterCorrect) then {
-    _unit setVariable [_buildingAvailableBoolString,true];
     private _attachedObject = _unit getVariable [SPEC_VAR_ATTACHED_OBJECT,objNull];
     if(!isNull _attachedObject) then {
         detach _attachedObject;

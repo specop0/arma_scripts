@@ -1,3 +1,6 @@
+// deconstruct (for constructed object) available
+#define SPEC_BUILD_DESTRUCTION_AVAILABLE true
+
 // local attached object parameter
 #define SPEC_VAR_ATTACHED_OBJECT "Spec_var_building_attachedObject"
 #define SPEC_VAR_OFFSET_HEIGHT "Spec_var_building_attachedObject_heightOffset"
@@ -15,7 +18,7 @@
 #define SPEC_ACTION_BUILD_STATUS_TEXT "%1/%2"
 
 #define SPEC_HINT_MAN_NEARBY "Ein anderer Mensch ist im Weg!"
-#define SPEC_HINT_NUMBER_OF_OBJECTS_LEFT "Nehme %1"
+#define SPEC_HINT_NUMBER_OF_OBJECTS_LEFT "Noch %1 uebrig"
 
 // bounding box
 #define SPEC_FNC_IS_BOUNDING_BOX_FREE Spec_construct_fnc_isBoundingBoxFree
@@ -33,6 +36,10 @@
 #define SPEC_FNC_ABORT_CONSTRUCT Spec_construct_fnc_abortConstruction
 #define SPEC_ACTION_ABORT_ID "Spec_action_abort"
 #define SPEC_ACTION_ABORT_NAME "Abbrechen"
+
+#define SPEC_FNC_DECONSTRUCT_ACTION Spec_construct_fnc_destructObject
+#define SPEC_ACTION_DESTRUCT_ID "Spec_action_destruct"
+#define SPEC_ACTION_DESTRUCT_NAME "Baue ab"
 
 #define SPEC_FNC_OFFSET_CONSTRUCTION Spec_construct_fnc_changeOffset
 #define SPEC_VAR_OFFSET_INCREASE 1

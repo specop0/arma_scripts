@@ -42,10 +42,9 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
         "",
         {
             params ["_target","_caller"];
-            (_this select 2) params ["_buildingAvailableBoolString"];
-            [_caller,_buildingAvailableBoolString] call SPEC_FNC_ABORT_CONSTRUCT;
+            [_caller] call SPEC_FNC_ABORT_CONSTRUCT;
         },
-        {true}, {}, [_buildingAvailableBoolString]
+        {true}, {}, []
     ] call ace_interact_menu_fnc_createAction;
     [_unit,1,["ACE_SelfActions"],_actionAbort] call ace_interact_menu_fnc_addActionToObject;
 

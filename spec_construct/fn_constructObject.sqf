@@ -9,8 +9,9 @@
     1: STRING - type of object to build
     2: POSITION - position of object (posASL)
     3: NUMBER - direction of object
-    2: NUMBER - number of animations to display before finishing the construction
-    3: STRING - name of variable (via getVariable) to reactivate parent construction action if construction is aborted
+    4: NUMBER - current number of animation which is displayed
+    5: NUMBER - number of animations to display before finishing the construction
+    6: STRING - name of variable (via getVariable) to reactivate parent construction action if construction is aborted
     
     Returns:
     true
@@ -39,18 +40,33 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
                 (_this select 0) call SPEC_FNC_CONSTRUCT_ACTION;
             },
             {
-                (_this select 0) params ["_unit","","","","","","_buildingAvailableBoolString"];
+                (_this select 0) params ["_unit"];
                 _unit switchMove "";
-                _unit setVariable [_buildingAvailableBoolString,true];
             },
             format [SPEC_ACTION_BUILD_STATUS_TEXT,_currentAnimation, _numberOfAnimations] 
         ] call ace_common_fnc_progressBar;
     } else {
         _unit switchMove "";
+        _unit setVariable [_buildingAvailableBoolString,false];
+        // create object
         private _object = _objectTypeToBuild createVehicle position _unit;
         _object setDir _direction;
         _object setPosASL _posASL;
         // don't change owner ship because of static object
+        // add destruct action
+        if(SPEC_BUILD_DESTRUCTION_AVAILABLE) then {
+            private _destructAction = [
+                SPEC_ACTION_DESTRUCT_ID,
+                SPEC_ACTION_DESTRUCT_NAME,
+                "",
+                {
+                    (_this select 2) call SPEC_FNC_DECONSTRUCT_ACTION;
+                },
+                {true},{},
+                [_unit,_objectTypeToBuild,format [SPEC_ACTION_CONSTRUCT_NAME_PARAM,_objectTypeToBuild],_object,0,_numberOfAnimations]
+            ] call ace_interact_menu_fnc_createAction;
+            [_object,0,["ACE_MainActions"],_destructAction] remoteExec ["ace_interact_menu_fnc_addActionToObject"];
+        };
     };
 };
 true

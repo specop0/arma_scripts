@@ -37,14 +37,12 @@ if(hasInterface && !isNull _unit && !("" in [_actionID,_actionName,_objectTypeTo
         "",
         {
             params ["_target","_caller","_argv"];
-            private _buildingAvailableBoolString = _argv select 3;
-            _caller setVariable [_buildingAvailableBoolString, false];
             _argv call SPEC_FNC_ATTACH_OBJECT;
         },
         {
-            params ["_target","_caller"];
-            private _buildingAvailableBoolString = (_this select 2) select 3;
-            _caller getVariable [_buildingAvailableBoolString, true ] &&    isNull (_caller getVariable [SPEC_VAR_ATTACHED_OBJECT,objNull]);
+            params ["_target","_caller","_argv"];
+            private _buildingAvailableBoolString = _argv select 3;
+            _caller getVariable [_buildingAvailableBoolString, true ] && isNull (_caller getVariable [SPEC_VAR_ATTACHED_OBJECT,objNull]);
         }, {}, [_unit,_objectTypeToBuild,_numberOfAnimations,_buildingAvailableBoolString]
     ] call ace_interact_menu_fnc_createAction;
     [_unit,1,["ACE_SelfActions"],_action] call ace_interact_menu_fnc_addActionToObject;

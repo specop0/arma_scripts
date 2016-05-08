@@ -7,6 +7,7 @@ class spec_construct {
         class changeOffset{};
         class clearAttachedObjectActions {};
         class constructObject {};
+        class destructObject {};
         class isBoundingBoxFree {};
         // add actions to player/object to construct something
         class objectAddConstructAction {};
