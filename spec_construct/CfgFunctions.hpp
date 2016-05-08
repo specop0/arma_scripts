@@ -4,7 +4,9 @@ class spec_construct {
         file="spec_construct";
         class abortConstruction {};
         class attachObject {};
-        class changeOffset{};
+        class changeOffset {};
+        class changeOffsetAddKeyHandler {};
+        class changeOffsetKeyHandler {};
         class clearAttachedObjectActions {};
         class constructObject {};
         class destructObject {};

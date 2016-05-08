@@ -6,15 +6,16 @@
     
     Parameter(s):
     0: OBJECT - unit/player who wants to abort the construct progress
+    1 (Optional): NUMBER - added displayEventHandler
     
     Returns:
     true
 */
 #include "const.hpp"
 
-private _parameterCorrect = params [ ["_unit",objNull,[objNull]] ];
+private _parameterCorrect = params [ ["_unit",objNull,[objNull]], ["_eventHandlerID",-1,[0]] ];
 
-if(_parameterCorrect) then {
+if(!isNull _unit) then {
     // clear variables for attached object
     _unit setVariable [SPEC_VAR_ATTACHED_OBJECT,objNull];
     _unit setVariable [SPEC_VAR_OFFSET_HEIGHT,0];
@@ -31,4 +32,10 @@ if(_parameterCorrect) then {
         SPEC_ACTION_FAR_ID,
         SPEC_ACTION_NEAR_ID
     ];
+    
+    // remove eventHandler
+    if(_eventHandlerID >= 0) then {
+        (findDisplay 46) displayRemoveEventHandler ["KeyDown", _eventHandlerID];
+    };
 };
+true

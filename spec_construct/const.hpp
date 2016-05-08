@@ -1,5 +1,7 @@
 // deconstruct (for constructed object) available
 #define SPEC_BUILD_DESTRUCTION_AVAILABLE true
+// use key handler (arrow keys) to adjust building [added for each local object, global EH possible]
+#define SPEC_BUILD_USE_KEY_HANDLER true
 
 // local attached object parameter
 #define SPEC_VAR_ATTACHED_OBJECT "Spec_var_building_attachedObject"
@@ -64,3 +66,6 @@
 #define SPEC_FNC_PLAYER_ADD_CONSTRUCT_ACTION Spec_construct_fnc_playerAddConstructAction
 #define SPEC_FNC_OBJECT_ADD_CONSTRUCT_ACTION Spec_construct_fnc_objectAddConstructAction
 #define SPEC_FNC_COBJECT_ADD_CONSTRUCTION_STATION Spec_construct_fnc_objectAddConstructionStation
+
+#define SPEC_FNC_ADD_KEY_HANDLER Spec_construct_fnc_changeOffsetAddKeyHandler
+#define SPEC_FNC_KEY_HANDLER Spec_construct_fnc_changeOffsetKeyHandler

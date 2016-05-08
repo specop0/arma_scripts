@@ -34,6 +34,9 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
 
     // attach object
     [_unit,0,"nothing"] call SPEC_FNC_OFFSET_CONSTRUCTION;
+    
+    // add KeyHandler
+    private _eventHandlerID = [] call SPEC_FNC_ADD_KEY_HANDLER;
 
     // abort
     private _actionAbort = [
@@ -41,10 +44,10 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
         SPEC_ACTION_ABORT_NAME,
         "",
         {
-            params ["_target","_caller"];
-            [_caller] call SPEC_FNC_ABORT_CONSTRUCT;
+            params ["_target","_caller","_argv"];
+            [_caller, _argv select 0] call SPEC_FNC_ABORT_CONSTRUCT;
         },
-        {true}, {}, []
+        {true}, {}, [_eventHandlerID]
     ] call ace_interact_menu_fnc_createAction;
     [_unit,1,["ACE_SelfActions"],_actionAbort] call ace_interact_menu_fnc_addActionToObject;
 
@@ -55,7 +58,7 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
         "",
         {
             params ["_target","_caller"];
-            (_this select 2) params ["_numberOfAnimations","_buildingAvailableBoolString"];
+            (_this select 2) params ["_numberOfAnimations","_buildingAvailableBoolString","_eventHandlerID"];
             private _attachedObject = _caller getVariable [SPEC_VAR_ATTACHED_OBJECT,objNull];
             if(!isNull _attachedObject) then {
                 detach _attachedObject;
@@ -65,7 +68,7 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
                 private _boundingBoxClear = [_attachedObject] call SPEC_FNC_IS_BOUNDING_BOX_FREE;
                 if(_boundingBoxClear) then {
                     deleteVehicle _attachedObject;
-                    [_caller] call SPEC_FNC_CLEAR_ATTACHED_OBJECT;
+                    [_caller,_eventHandlerID] call SPEC_FNC_CLEAR_ATTACHED_OBJECT;
                     [_caller,_type,_posASL,_direction,0,_numberOfAnimations,_buildingAvailableBoolString] call SPEC_FNC_CONSTRUCT_ACTION;
                 } else {
                     [_caller,0,"nochange"] call SPEC_FNC_OFFSET_CONSTRUCTION;
@@ -76,7 +79,7 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
         {
             params ["_target","_caller"];
             !isNull (_caller getVariable [SPEC_VAR_ATTACHED_OBJECT,objNull])
-        }, {}, [_numberOfAnimations,_buildingAvailableBoolString]
+        }, {}, [_numberOfAnimations,_buildingAvailableBoolString,_eventHandlerID]
     ] call ace_interact_menu_fnc_createAction;
     [_unit,1,["ACE_SelfActions"],_actionBuild] call ace_interact_menu_fnc_addActionToObject;
 
