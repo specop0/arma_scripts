@@ -55,17 +55,24 @@ if(!isNull _unit && !("" in [_objectTypeToBuild,_buildingAvailableBoolString])) 
         // don't change owner ship because of static object
         // add destruct action
         if(SPEC_BUILD_DESTRUCTION_AVAILABLE) then {
-            private _destructAction = [
-                SPEC_ACTION_DESTRUCT_ID,
-                SPEC_ACTION_DESTRUCT_NAME,
-                "",
+            [
+                -1,
                 {
-                    (_this select 2) call SPEC_FNC_DECONSTRUCT_ACTION;
+                    params ["_object","_actionID","_actionName","_objectToDestruct","_currentAnimation", "_numberOfAnimations"];
+                    private _destructAction = [
+                        SPEC_ACTION_DESTRUCT_ID,
+                        SPEC_ACTION_DESTRUCT_NAME,
+                        "",
+                        {
+                            (_this select 2) call SPEC_FNC_DECONSTRUCT_ACTION;
+                        },
+                        {true},{},
+                        [player,_actionID,_actionName,_objectToDestruct,_currentAnimation,_numberOfAnimations]
+                    ] call ace_interact_menu_fnc_createAction;
+                    [_object,0,["ACE_MainActions"],_destructAction] call ace_interact_menu_fnc_addActionToObject;
                 },
-                {true},{},
-                [_unit,_objectTypeToBuild,format [SPEC_ACTION_CONSTRUCT_NAME_PARAM,_objectTypeToBuild],_object,0,_numberOfAnimations]
-            ] call ace_interact_menu_fnc_createAction;
-            [_object,0,["ACE_MainActions"],_destructAction] remoteExec ["ace_interact_menu_fnc_addActionToObject"];
+                [_object,_objectTypeToBuild,format [SPEC_ACTION_CONSTRUCT_NAME_PARAM,_objectTypeToBuild],_object,0,_numberOfAnimations]
+            ] call CBA_fnc_globalExecute;
         };
     };
 };
