@@ -3,9 +3,18 @@
 #define ACTION_CRATE_MORTAR_ID "Spec_action_mortar_crateMortar"
 #define CRATE_MORTAR_CLASS "UK3CB_BAF_Static_Weapons_L16_Box"
 
-#define ACTION_CRATE_AMMO_NAME "Spawn Moerser Munition"
-#define ACTION_CRATE_AMMO_ID "Spec_action_mortar_crateMortarAmmo"
-#define CRATE_AMMO_CLASS "UK3CB_BAF_Static_Weapons_L16_ammo"
+#define ACTION_CRATE_AMMO_NAME "Spawn Moerser Munition HE"
+#define ACTION_CRATE_AMMO_ID "Spec_action_mortar_crateMortarAmmoHE"
+#define CRATE_AMMO_CLASS "ACE_Box_82mm_Mo_HE"
+
+#define ACTION_CRATE_AMMO_SMOKE_NAME "Spawn Moerser Munition Rauch"
+#define ACTION_CRATE_AMMO_SMOKE_ID "Spec_action_mortar_crateMortarAmmoSmoke"
+#define CRATE_AMMO_SMOKE_CLASS "ACE_Box_82mm_Mo_Smoke"
+
+#define ACTION_CRATE_AMMO_ILLUM_NAME "Spawn Moerser Munition Leuchtgeschoss"
+#define ACTION_CRATE_AMMO_ILLUM_ID "Spec_action_mortar_crateMortarAmmoIllum"
+#define CRATE_AMMO_ILLUM_CLASS "ACE_Box_82mm_Mo_Illum"
+
 
 #define ACTION_CRATE_DELETE_NAME "Loesche Kisten"
 #define ACTION_CRATE_DELETE_ID "Spec_action_mortar_deleteCrates"
