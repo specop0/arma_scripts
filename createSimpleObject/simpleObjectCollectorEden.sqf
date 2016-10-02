@@ -80,12 +80,13 @@ private _clipboard = 'private ["_simpleObject"];';
                     _simpleObject setVectorDirAndUp %4;
                     ',
                     _clipboard,_model,_position,_vectorDirUp];
+                _x set3DENAttribute ["objectIsSimple",true];
             };
         };
     };
 } forEach (all3DENEntities select 0);
 copyToClipboard str _clipboard;
-delete3DENEntities _entitiesToDelete;
+//delete3DENEntities _entitiesToDelete;
 systemChat format ["%1 deleted", _deleted];
 {
     _type = _x;
