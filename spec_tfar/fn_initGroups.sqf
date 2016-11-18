@@ -108,7 +108,7 @@ if(_parameterCorrect) then {
     _unitName setVariable ["Spec_var_lrFreq", _lrFreq];
 
     // BFT Settings
-    _unitName setGroupIdGlobal [_callsign];
+    (group _unitName) setGroupIdGlobal [_callsign];
     _unitName setVariable ["BG_BFT_groupId", _callsign, true];
     _unitName setVariable ["BG_BFT_icon", _BFTicon, true]; 
     _unitName setVariable ["BG_BFT_remarks", _BFTremarks, true];
