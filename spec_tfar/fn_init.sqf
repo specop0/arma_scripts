@@ -30,6 +30,7 @@ if(isServer) then {
 if(hasInterface) then {
     player call Spec_tfar_fnc_initGroups;
     player call Spec_tfar_fnc_setFrequencies;
+    player setVariable ["Spec_var_timeAtInit", serverTime];
     ["Spec_setTFAR", "OnRadiosReceived", Spec_tfar_fnc_setFrequencies, player] call TFAR_fnc_addEventHandler;
 };
 true

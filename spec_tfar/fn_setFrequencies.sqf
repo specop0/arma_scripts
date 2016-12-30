@@ -16,7 +16,7 @@
 */
 private _parameterCorrect = params [["_unit",objNull,[objNull]]];
 
-if(_parameterCorrect && time < 180) then {
+if(_parameterCorrect && serverTime - (_unit getVariable ["Spec_var_timeAtInit", 0]) < 180) then {
     private _swFreq = _unit getVariable ["Spec_var_swFreq", ["30"]];
     if(_swFreq isEqualType [] && call TFAR_fnc_haveSWRadio) then {
         _swFreq resize (count _swFreq min 8);
