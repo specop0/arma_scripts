@@ -14,9 +14,6 @@
     true
 */
 
-tf_radio_channel_name = "LaufendeMission";
-tf_radio_channel_password = "130";
-
 TFAR_DefaultRadio_Personal_West = "tf_anprc152";
 TFAR_DefaultRadio_Personal_East = "tf_fadak";
 TFAR_DefaultRadio_Personal_Independent = "tf_anprc148jem";
@@ -30,6 +27,4 @@ if(hasInterface) then {
     player setVariable ["Spec_var_timeAtInit", serverTime];
     ["Spec_setTFAR", "OnRadiosReceived", Spec_tfar_fnc_setFrequencies, player] call TFAR_fnc_addEventHandler;
 };
-// apply variables to TS plugin
-[] call TFAR_fnc_sendPluginConfig;
 true
