@@ -14,13 +14,6 @@
     true
 */
 
-TFAR_DefaultRadio_Personal_West = "tf_anprc152";
-TFAR_DefaultRadio_Personal_East = "tf_fadak";
-TFAR_DefaultRadio_Personal_Independent = "tf_anprc148jem";
-TFAR_DefaultRadio_Rifleman_West = TFAR_DefaultRadio_Personal_West;
-TFAR_DefaultRadio_Rifleman_East = TFAR_DefaultRadio_Personal_East;
-TFAR_DefaultRadio_Rifleman_Independent = TFAR_DefaultRadio_Personal_Independent;
-
 if(hasInterface) then {
     player call Spec_tfar_fnc_initGroups;
     player call Spec_tfar_fnc_setFrequencies;
