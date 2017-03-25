@@ -24,10 +24,10 @@ params [ ["_unit",objNull,[objNull]], ["_currentCrate",0,[0]], ["_nearCrates",[]
 
 if(!isNull _unit) then {
     // search for nearest crates
-    private _posATL = getPosATL _unit;
+    private _posASL = getPosASL _unit;
     if(_currentCrate == 0) then {
         // search for crates which are not hidden (attached to other crate)
-        private _allNearCrates = nearestObjects [_posATL, ["NATO_Box_Base"], CRATE_RADIUS_TO_SEARCH];
+        private _allNearCrates = nearestObjects [_unit, ["NATO_Box_Base"], CRATE_RADIUS_TO_SEARCH];
         _nearCrates = [];
         {
             if(!isNull _x && {!isObjectHidden _x}) then {
@@ -59,7 +59,7 @@ if(!isNull _unit) then {
             _unit switchMove "";
             
             // spawn supply crate
-            private _supplyCrate = createVehicle ["B_supplyCrate_F", _posATL, [],0,""];
+            private _supplyCrate = createVehicle ["B_supplyCrate_F", _posASL, [],0,""];
             clearBackpackCargoGlobal _supplyCrate;
             clearMagazineCargoGlobal _supplyCrate;
             clearItemCargoGlobal _supplyCrate;
@@ -69,8 +69,12 @@ if(!isNull _unit) then {
             // set crate in front of unit
             private _direction = direction _unit;
             private _offset = 1.5;
-            _posATL = [(_posATL select 0) + (_offset * (sin _direction)), (_posATL select 1) + (_offset * (cos _direction)), 0];
-            _supplyCrate setPosATL _posATL;
+            _posASL = [
+                (_posASL select 0) + (_offset * (sin _direction)),
+                (_posASL select 1) + (_offset * (cos _direction)),
+                _posASL select 2
+            ];
+            _supplyCrate setPosASL _posASL;
             _supplyCrate setDir (_direction + 90);
 
             // attach nearest creates to supply crate
