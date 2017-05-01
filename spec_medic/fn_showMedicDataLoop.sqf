@@ -22,8 +22,9 @@ if(hasInterface) then {
         if(_activate) then {
             missionNamespace setVariable [SPEC_MEDIC_ACTIVATE_VAR, true];
             // activate loop
-            private _scriptHandle = [] spawn {
-                while { missionNamespace getVariable [SPEC_MEDIC_ACTIVATE_VAR, false] } do {
+            [{
+                params ["_args","_id"];
+                if(missionNamespace getVariable [SPEC_MEDIC_ACTIVATE_VAR, false]) then {
                     // if player is unconscious output its medic data
                     if([player] call ace_medical_fnc_getUnconsciousCondition) then {
                             [player] call Spec_medic_fnc_showMedicData;
@@ -37,9 +38,11 @@ if(hasInterface) then {
                             hintSilent "Kein Ziel gefunden";
                         };
                     };
-                    sleep 1;
+                } else {
+                    // abort show medic data
+                    [_id] call CBA_fnc_removePerFrameHandler;
                 };
-            };
+            }, 0, []] call CBA_fnc_addPerFrameHandler;
         } else {
             missionNamespace setVariable [SPEC_MEDIC_ACTIVATE_VAR, false];
         };
