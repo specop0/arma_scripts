@@ -21,11 +21,11 @@ if !(isNull _unit) then {
         _unit getVariable ["ace_medical_bloodPressure", [80,120]] select 1,
         _unit getVariable ["ace_medical_bloodPressure", [80,120]] select 0,
         _unit getVariable ["ace_medical_bloodVolume", 100],
-        ([_unit] call ace_medical_fnc_getUnconsciousCondition) call boolToStr,
-        (_unit getVariable ["ace_medical_inCardiacArrest", false]) call boolToStr,
-        (_unit getVariable ["ace_medical_inReviveState", false]) call boolToStr,
+        ([_unit] call ace_medical_fnc_getUnconsciousCondition) call Spec_medic_fnc_boolToStr,
+        (_unit getVariable ["ace_medical_inCardiacArrest", false]) call Spec_medic_fnc_boolToStr,
+        (_unit getVariable ["ace_medical_inReviveState", false]) call Spec_medic_fnc_boolToStr,
         round(CBA_missionTime - (_unit getVariable ["ace_medical_reviveStartTime", CBA_missionTime])),
-        (_unit getVariable ["ACE_isDead", false]) call boolToStr
+        (_unit getVariable ["ACE_isDead", false]) call Spec_medic_fnc_boolToStr
     ];
 };
 true
