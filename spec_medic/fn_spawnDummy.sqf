@@ -13,9 +13,9 @@
 params [ ["_positionObject",player,[objNull]] ];
 
 // spawn undamaged medic dummy
-private _dummyClass = "B_Soldier_VR_F";
+#define DUMMY_CLASS_NAME "B_Soldier_VR_F"
 private _group = createGroup CIVILIAN;
-private _dummy = _group createUnit [_dummyClass, _positionObject, [], 0, "NONE"];
+private _dummy = _group createUnit [DUMMY_CLASS_NAME, _positionObject, [], 0, "NONE"];
 _dummy setPosASL (getPosASL _positionObject);
 _dummy disableAI "MOVE";
 _dummy setUnitPos "DOWN";
