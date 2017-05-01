@@ -20,8 +20,8 @@ _dummy setPosASL (getPosASL _positionObject);
 _dummy disableAI "MOVE";
 _dummy setUnitPos "DOWN";
 // activate ace medic (needs advanced medic settings and remote controlled AI false)
-_dummy setVariable ["ace_medical_enableMedical", true, true];
-_dummy call ace_medical_fnc_init;
 _dummy setVariable ["bis_fnc_moduleRemoteControl_owner", _dummy, true];
+_dummy setVariable ["ace_medical_enableMedical", true, true];
+[_dummy] call ace_medical_fnc_init;
 
 _dummy
