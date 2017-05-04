@@ -27,7 +27,7 @@ http://www.tacticalteam.de/content/script-servicepoint
 ### hideTerrain_initServer.sqf
 3 examples to hide terrain objects in the initServer.sqf
 
-### jk_medicTent.sqf [by jokoho48](https://github.com/jokoho48)
+### jk_medicTent.sqf ([by jokoho48](https://github.com/jokoho48))
 adds a Medical Tent to vehicles which can be built and used as an ACE medical facility
 has to be torn down before it can be constructed again
 1) add vehicles to JK_Medical_Vehicles
@@ -44,8 +44,8 @@ simple caching script for infantry
 1. spawn groups in editor and set waypoints
 2. add in init field: [this, numberOfGroup ] call Spec_cache_fnc_cacheGroup;
 3. to spawn unit call (e.g. in trigger):
-  * numberOfGroup call Spec_cache_fnc_spawnGroup;
-  * numberOfGroup is unique (otherwise error is shown)
+ * numberOfGroup call Spec_cache_fnc_spawnGroup;
+ * numberOfGroup is unique (otherwise error is shown)
 
 #### example mission
 * see error that vehicle with crew can not be cached
@@ -62,7 +62,7 @@ ACE Cargo droppable in flight with Parachute
 ### spec_checkpoint
 Simple AI checkpoint script with smuggler (and intel) via ACE action.
 * in Waypoint add to onAction: [this,"marker_target"] call Spec_checkpoint_fnc_addPassCheckAction
-  * then vehicle and unit has ace action to pass the checkpoint and drives to given marker position
+ * then vehicle and unit has ace action to pass the checkpoint and drives to given marker position
 * in vehicle of smuggler add: [this call Spec_checkpoint_fnc_loadSmugglerItems to load nearby items (see const.hpp) into ace cargo
 * in initPlayerLocal of HQ add: [this] call Spec_checkpoint_fnc_addTakeIntelAction to show how many smuggler reached their target
 * to take (intel objects) via ace action add: [this] call Spec_checkpoint_fnc_addTakeIntelAction
@@ -83,14 +83,14 @@ if player enters this tagged vehicle he will be healed with ACE personal aid kit
 ### spec_heli
 two different upgrades of heli_evac.sqf which use a helicopter placed in the editor
 1. Spec_heli_fnc_taxi (taxi.sqf) and Spec_heli_fnc_moveMarkerLZ (moveMarkerLZ.sqf)
-  1. choose ace action to mark a LZ
-  2. if player clicks on map a LZ marker will be placed (visible for everyone and unique name)
-  3. if helicopter is called flies to marker position and flies off to base if no man nearby
+ 1. choose ace action to mark a LZ
+ 2. if player clicks on map a LZ marker will be placed (visible for everyone and unique name)
+ 3. if helicopter is called flies to marker position and flies off to base if no man nearby
 2. Spec_heli_fnc_medEvac (medEvac.sqf) (Spec_heli_fnc_medEvacRetransfer heli_medevac_retransfer)
-  1. helicopter flies to player/caller position
-  2.flies to base if no man nearby
-  3. unloaded passenger will be fully healed with a PAK (from ACE Advanced Medic)
-  4. optional (heli_medevac_retransfer): ace action is to retransfer to last called LZ
+ 1. helicopter flies to player/caller position
+ 2.flies to base if no man nearby
+ 3. unloaded passenger will be fully healed with a PAK (from ACE Advanced Medic)
+ 4. optional (heli_medevac_retransfer): ace action is to retransfer to last called LZ
 
 ### spec_medic
 training station for ACE advanced medical
@@ -103,9 +103,9 @@ training station for ACE advanced medical
 training scripts for mk6 mortar with ACE (3CB BAF mortar)
 * add in init field: [this] call Spec_mortar_fnc_addTrainingStation;
 1. training station has ACE interaction to spawn crates (mortar, mortar ammo) and assign player to FAC
-  1. FAC can spawn/move one target (offroad vehicle)
-  2. FAC has different ACE self interactions to show info about target (liner, tip, solution)
-  3. Hints are displayed if vehicle is hit/destroyed
+ 1. FAC can spawn/move one target (offroad vehicle)
+ 2. FAC has different ACE self interactions to show info about target (liner, tip, solution)
+ 3. Hints are displayed if vehicle is hit/destroyed
 
 ### spec_presentation
 simple slide show of pictures (e.g. at billboard)
