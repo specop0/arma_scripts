@@ -76,6 +76,12 @@ In addition a object can be assigned multiple objects of one type (inclusively r
 ### spec_crate
 template for ammo crates
 
+### spec_farming
+Adds a waypoint to a single unit where a "farming" animation (crouch and stand up) is executed and another waypoint added.
+* place (rectangle) marker to define a farming area
+* place single civilian
+    * in init field: this setVariable ["Spec_farming_marker", "marker_0"]
+
 ### spec_fullheal
 1. add action to assign vehicle to provide full heal
 if player enters this tagged vehicle he will be healed with ACE personal aid kit and get some bandages (if not exist in backpack)
