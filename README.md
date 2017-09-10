@@ -33,6 +33,11 @@ has to be torn down before it can be constructed again
 1. add vehicles to JK_Medical_Vehicles
 2. execute script on mission start (e.g. initPlayerLocal.sqf)
 
+### laptop
+take and put down a laptop - in initPlayerLocal.sqf
+1. addAction to take a laptop (which is attached to the player) - attacheLaptop.sqf (see header for example usage)
+2. addAction to the player to put the attached laptop down - detachLaptop.sqf (see header for example usage)
+
 ### plane.sqf
 Spawn pilots into plane (plane takes off) and assigns waypoints (with flyInHeight)
 
