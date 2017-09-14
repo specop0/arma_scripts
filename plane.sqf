@@ -10,8 +10,14 @@
 
     Returns:
     true
-*/
 
+    Usage (MyPlane.init):
+    this addAction ["We are ready for take off.", {
+        params ["_target", "_caller"];
+        _target setVariable ["takeOffStarted", true, true];
+        [_target] call compile preprocessFileLineNumbers "plane.sqf";
+    }, [], 1.5, false, true, "", "!(_target getVariable [""takeOffStarted"", false])"];
+*/
 
 comment "Edit these Entries";
 private _parameterCorrect = params [["_airplane",objNull,[objNull]]];

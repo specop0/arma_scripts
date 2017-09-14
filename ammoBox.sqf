@@ -16,6 +16,9 @@
 
     Returns:
     true
+
+    Usage (initPlayerLocal.sqf):
+    player addAction ["Spawn Ammobox", { _this call compile preprocessFileLineNumbers "ammoBox.sqf"; }];
 */
 
 private _script = _this spawn {

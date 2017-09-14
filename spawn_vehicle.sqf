@@ -11,6 +11,9 @@
 
     Returns:
     true
+
+    Usage (Noticeboard.init):
+    this addAction ["Spawn Vehicle", { _this call compile preprocessFileLineNumbers "spawn_vehicle.sqf"];
 */
 
 comment "Edit these Entries";

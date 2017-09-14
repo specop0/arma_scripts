@@ -12,6 +12,16 @@
 
     Returns:
     true
+
+    Usage (initServer.sqf):
+    [smokeCrateA,
+        [
+            ["SmokeShell",36],
+            ["SmokeShellGreen",12],
+            ["SmokeShellGreen",12],
+            ["SmokeShellPurple",12]
+        ]
+    ] call Spec_crate_fnc_filler;
 */
 
 params [ ["_crate",objNull,[objNull]], ["_content",[],[[]]] ];

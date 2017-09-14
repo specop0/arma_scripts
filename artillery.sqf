@@ -10,6 +10,9 @@
     
     Returns:
     true
+
+    Usage (Trigger.OnActivation):
+    [] call compile preprocessFileLineNumbers "artillery.sqf";
 */
 
 private _scriptHandle = [] spawn {

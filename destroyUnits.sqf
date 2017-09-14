@@ -11,6 +11,9 @@
 
     Returns:
     true
+
+    Usage (Trigger.OnActivation):
+    ["target1", 500] call compile preprocessFileLineNumbers "destroyUnits.sqf";
 */
 
 if(isServer) then {

@@ -1,5 +1,8 @@
 /*
  * Author: joko // Jonas
+ *
+ * Usage (initPlayerLocal.sqf):
+ * [] call compile preprocessFileLineNumbers "jk_medicTent.sqf";
  */
 JK_BuildAnimation = "Acts_carFixingWheel";
 JK_BuildTime = 12;

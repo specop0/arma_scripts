@@ -13,6 +13,9 @@
 
     Returns:
     true
+
+    Usage (initPlayerLocal.sqf):
+    player addAction ["Call MedEvac", { _this call compile preprocessFileLineNumbers "heli_evac.sqf"; }];
 */
 
 comment "Edit these Entries";

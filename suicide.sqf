@@ -12,12 +12,14 @@
     2: STRING - suicide yell/last words of unit/vehicle before explosion (using a hint)
     3: NUMBER - delay after last words in seconds after suicide yell/last
     4: STRING - size of explosion: "SMALL", "MEDIUM" or "LARGE"
-    5 (Optional): BOOL - if true will wait for enemy side to be nearby before explosion
-    6 (Optional): NUMBER - distance/radius to look for enemies (if 5 is true)
-    7 (Optional): SIDE - side of enemy (if 5 is true); default value is "WEST"
+    5 (Optional): NUMBER - distance/radius where the last words are displayed via a hint (default: 30 m)
 
     Returns:
     true
+
+    Usage (Trigger.OnActivation):
+    [bomberA, 100, "Die!", 1, "SMALL"] call compile preprocessFileLineNumbers "suicide.sqf";
+    The (sever-only) trigger should be attached to bomberA (via initServer.sqf).
 */
 
 private _scriptHandle = _this spawn {
@@ -25,30 +27,7 @@ private _scriptHandle = _this spawn {
     private ["_parameterCorrect","_chance","_types","_null","_sleepTime"];
     _parameterCorrect = params [ ["_car",objNull,[objNull]], ["_possibility",50,[0]], ["_shoutout","DIE!",["STRING"]], ["_delay",1,[0]], ["_size","MEDIUM",["STRING"]] ];
     // optional parameter
-    params [ "", "", "", "", "", ["_lookForEnemy",false,[true]], ["_distance",30,[0]], ["_enemySide",WEST,[WEST]] ];
-
-    // time to look for enemies (as large as possible to avoid heavy computation)
-    _sleepTime = 0.5;
-    while {_lookForEnemy} do
-    {
-        if(alive _car) then    {
-            // explodes if vehicle is empty
-            if((driver _car isKindOf "Man") && (side driver _car != _enemySide)) then
-            {
-                _types = _car nearObjects ["Man", _distance];
-                {
-                    if (side _x == _enemySide) exitWith {_lookForEnemy = false};
-                } foreach _types;
-            } else {
-                if(true) exitWith {_lookForEnemy = false};
-            };
-        } else {
-            _lookForEnemy = false;
-            _possibility = 0;
-        };
-        sleep _sleepTime;
-    };
-
+    params [ "", "", "", "", "", ["_distance",30,[0]] ];
 
     _chance = floor(random 100) + 1;
     if(_chance <= _possibility) then {

@@ -15,6 +15,9 @@
     
     Returns:
     true
+
+    Usage (initPlayerLocal.sqf):
+    [noticeboard_spawnerA, "spawnerA", 1, 5] call Spec_fullheal_fnc_addAssignVehicleAction;
 */
 #define COLOR_GREEN "579D1C"
 #define COLOR_RED "EE0000"

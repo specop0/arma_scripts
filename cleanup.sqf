@@ -19,6 +19,9 @@
 
     Returns:
     true
+
+    Usage (initPlayerLocal.sqf):
+    player addAction ["Cleanup Iraklia", Spec_fnc_cleanup, [player,"cleanup_1",2000]];
 */
 
 private _parameterCorrect = (_this select 3) params [ ["_caller",objNull,[objNull]],["_markerName","",["STRING"]],["_radius",0,[0]] ];
