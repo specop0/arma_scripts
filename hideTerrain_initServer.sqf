@@ -2,6 +2,7 @@
 private _terrainObjects = nearestTerrainObjects [[5682.446,11060.217,0],[],15];
 {
     hideObjectGlobal _x;
+    _x allowDamage false;
 } forEach _terrainObjects;
 
 // hide some buildings in Mansoura (G.O.S. Al Rayak)
@@ -9,10 +10,12 @@ private _terrainObjects = nearestTerrainObjects [[5682.446,11060.217,0],[],15];
     _x params ["_pos","_distance"];
     {
         hideObjectGlobal _x;
+    _x allowDamage false;
     } forEach nearestTerrainObjects [_pos ,["House"],_distance];
     {
         if(typeOf _x in ["Land_Terrace_K_1_EP1"]) then {
             hideObjectGlobal _x;
+            _x allowDamage false;
         };
     } forEach nearestTerrainObjects [_pos ,[],_distance];
 } forEach [
