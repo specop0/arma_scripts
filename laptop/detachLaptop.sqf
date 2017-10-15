@@ -1,13 +1,11 @@
 /*
     Author: SpecOp0
-
     Description:
     Detaches the item (e.g. laptop) from to the unit (saved into variable "attachedObject").
     
     Parameter(s):
     0: -
     1: OBJECT - caller to attach the target item to (e.g. a player who chooses the menu entry)
-
     Returns:
     true
     
@@ -25,6 +23,10 @@ if !(isNull _attachedObject) then {
     private _distance = 0.5;
     _posASL set [0,(_posASL select 0) + _distance * sin(_dir)];
     _posASL set [1,(_posASL select 1) + _distance * cos(_dir)];
+    // adjust height for some objects (e.g. tablet)
+    if(typeof _attachedObject in ["Land_Tablet_02_F"]) then {
+        _posASL set [2, (_posASL select 2) + 0.02];
+    };
     // face item to player
     _dir = _dir + 180;
     {
