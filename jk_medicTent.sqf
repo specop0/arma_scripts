@@ -36,7 +36,7 @@ JK_fnc_buildTent = {
         JK_fnc_destructTentProgressBar,
         JK_fnc_canBuildTent
     ] call ace_interact_menu_fnc_createAction;
-    [[_JKtent, 0, ["ACE_MainActions"], _action], "ace_interact_menu_fnc_addActionToObject", true] call BIS_fnc_MP;
+    [_JKtent, 0, ["ACE_MainActions"], _action] remoteExec ["ace_interact_menu_fnc_addActionToObject", -2, true];
     _JKtent setVariable ["ace_medical_isMedicalFacility", true, true];
     _JKvehicle setVariable ["JK_buildTent", true, true];
     _JKtent setVariable ["JK_tentVehicle", _JKvehicle, true];
@@ -47,10 +47,10 @@ JK_buildTentProgressBar = {
     private _position = (getPos _JKvehicle) findEmptyPosition [5, 20, "MASH"];
     if (_position isEqualTo []) exitWith {hint "Nicht genug Platz zum Aufbau des Zeltes vorhanden."};
     player playMove JK_BuildAnimation;
-    [JK_BuildTime, _this, JK_fnc_buildTent, {(_this select 0) select 1 switchMove ""}, "Baue medzinisches Zelt auf"] call ace_common_fnc_progressBar;
+    [JK_BuildTime, _this, JK_fnc_buildTent, {(_this select 0) select 1 switchMove ""}, "Baue medizinisches Zelt auf"] call ace_common_fnc_progressBar;
 };
 
-_action = ["JK_BuildTent", "Baue medzinisches Zelt auf", "",
+_action = ["JK_BuildTent", "Baue medizinisches Zelt auf", "",
     JK_buildTentProgressBar,
     JK_fnc_canBuildTent
 ] call ace_interact_menu_fnc_createAction;
