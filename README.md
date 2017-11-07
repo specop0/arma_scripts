@@ -67,10 +67,17 @@ Trigger.OnActivation:
 ### hideTerrain_initServer.sqf
 3 examples to hide terrain objects in the initServer.sqf
 
-### jk_medicTent.sqf ([by jokoho48](https://github.com/jokoho48))
+### Medic Tent
+
+#### jk_medicTent.sqf ([by jokoho48](https://github.com/jokoho48))
 Adds a Medical Tent to vehicles which can be built and used as an ACE medical facility has to be torn down before it can be constructed again.
 1. add vehicles to JK_Medical_Vehicles (```JK_Medical_Vehicles = [zamak_medic];```)
 2. execute script on mission start (e.g. initPlayerLocal.sqf: ```[] call compile preprocessFileLineNumbers "jk_medicTent.sqf";```)
+
+#### jk_medicTent_backpack.sqf
+Variant using Backpacks
+1. add class names of supported backpacks to JK_SupportedBackpacks (```JK_SupportedBackpacks = ["B_Carryall_mcamo"];```)
+2. execute script on mission start (e.g. initPlayerLocal.sqf: ```[] call compile preprocessFileLineNumbers "jk_medicTent_backpack.sqf";```)
 
 ### laptop
 take and put down a laptop - in initPlayerLocal.sqf
