@@ -84,6 +84,9 @@ take and put down a laptop - in initPlayerLocal.sqf
 1. addAction to take a laptop (which is attached to the player) - attacheLaptop.sqf (see header for example usage)
 2. addAction to the player to put the attached laptop down - detachLaptop.sqf (see header for example usage)
 
+### missionCheck.sqf
+Checks if anything for a mission has been forgotten (e.g. respawn marker).
+
 ### plane.sqf
 Spawn pilots into plane (plane takes off) and assigns waypoints (with flyInHeight). The names of the waypoints as well as other stuff are hard coded (```_markerNameWaypoints = ["wp1","wp2"];```)
 
