@@ -51,7 +51,7 @@ if (getMarkerPos "respawn" isEqualTo [0,0,0]) then {
     _message = format ["%1<br/>Respawn:<br/>%2 for all sides.", _message, format [_successPlaceHolder, "Found global Marker"]];
 };
 private _respawnType = getMissionConfigValue ["respawn",0];
-private _respawnTypeCorrect = if (_respawnType isEqualType [0]) then { _respawnType == 3 } else { _respawnType isEqualTo "BASE" };
+private _respawnTypeCorrect = if (_respawnType isEqualType 0) then { _respawnType == 3 } else { _respawnType isEqualTo "BASE" };
 if (_respawnTypeCorrect) then {
     _message = format ["%1<br/>%2 is set correctly", _message, format [_successPlaceHolder, "Type of respawn"]];
 } else {
