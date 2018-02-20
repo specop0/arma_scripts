@@ -65,7 +65,7 @@ private _seatsAvailable = 0;
 private _ignoredWeapons = ["FirstAidKit"];
 private _ignoredMagazines = [
     "SmokeShell", "SmokeShellRed", "SmokeShellGreen", "SmokeShellYellow","SmokeShellPurple", "SmokeShellBlue", "SmokeShellOrange",
-    "UK3CB_BAF_32Rnd_40mm_G_Box","UK3CB_BAF_762_200Rnd_T"
+    "UK3CB_BAF_32Rnd_40mm_G_Box","UK3CB_BAF_762_200Rnd_T", "ToolKit"
 ];
 private _ignoredBackpacks = ["B_Parachute"];
 
