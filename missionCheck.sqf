@@ -9,11 +9,13 @@ comment "============ RESPAWN (MARKER AND TYPE) ============";
 private _sides = [];
 private _groups = [];
 {
-    if !(side _x in _sides) then {
-        _sides pushBack side _x;
-    };
-    if !(group _x in _groups) then {
-        _groups pushBack group _x;
+    if !(typeof _x in ["HeadlessClient_F"]) then {
+        if !(side _x in _sides) then {
+            _sides pushBack side _x;
+        };
+        if !(group _x in _groups) then {
+            _groups pushBack group _x;
+        };
     };
 } forEach _playableUnits;
 
@@ -177,6 +179,15 @@ if (count _incorrectGroupNames > 0) then {
 } else {
     _message = format ["%1<br/>%2: Every playable group has a correct group names.", _message, format [_successPlaceHolder, "Callsigns"]];
 };
+
+comment "============= WIND ==============";
+private _isWindForced = "Intel" get3DENMissionAttribute "IntelWindIsForced";
+_message = format [
+    "%1<br/>%2: Wind is %3 forced.",
+    _message,
+    format [ if (_isWindForced) then { _successPlaceHolder } else { _errorPlaceholder }, "Wind"],
+    if (_isWindForced) then { "" } else { format [_errorPlaceholder, "not"] }
+];
 
 
 comment "============ LOADOUT ============";
