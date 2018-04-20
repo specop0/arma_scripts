@@ -3,12 +3,12 @@
 ### Abbreviations 
 The code examples begin with a prefered calling method which is abbreviated
 * The [Event-Scripts](https://community.bistudio.com/wiki/Event_Scripts)
-** initPlayerLocal.sqf
-** initServer.sqf 
+    * initPlayerLocal.sqf
+    * initServer.sqf 
 * init Field of a unit
-** Plane.init: The init-field of a plane
+    * Plane.init: The init-field of a plane
 * In activation of a Trigger
-** Trigger.OnActivation
+    * Trigger.OnActivation
 
 ### ammoBox.sqf
 1. spawns ammunition box with parachute.
