@@ -149,6 +149,12 @@ Template for ammo crates
 * After mission start (fn_postInit.sqf) all available crates are searched for specific types and refilled (e.g. "TTT_Logistik_Medic_Bw" is filled with ACE medic content)
 * Contains a crate filler
 
+### spec_crateNaming
+Adds ACE action to all crates to edit the display name in ACE cargo.
+1. add "CfgFunctions.hpp" to "CfgFunctions" in description.ext
+2. add "DescriptionExt.hpp" to description.ext (or "CfgEventHandlers.hpp" to "Extended_Init_EventHandlers" in description.ext)
+* to name a crate in editor add to init field: ```if (isServer) then { this setVariable ["ace_cargo_displayName", "My Crate", true]; };```
+
 ### spec_farming
 Adds a waypoint to a single unit where a "farming" animation (crouch and stand up) is executed and another waypoint added.
 * place (rectangle) marker to define a farming area
@@ -229,7 +235,7 @@ to test (BFT values) team switch to unit and execute ```[player] call "Spec_tfar
 * Curator unit sharing incl JIP/Respawn (from https://forums.bistudio.com/topic/166808-making-placed-units-be-editable-for-every-zeus/)
 * placed units are transfered to the server (later extendable to headless client)
 * currently serverID is determined in a bad way (with sleep 20)
-1. add functions via header-file in descriptions.ext
+1. add functions via header-file in description.ext
 
 ### suicide.sqf
 If conditions are met unit, vehicle or other attached object will trigger a explosion (with 3 possible sizes).
