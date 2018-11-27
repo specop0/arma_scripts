@@ -87,6 +87,9 @@ take and put down a laptop - in initPlayerLocal.sqf
 ### missionCheck.sqf
 Checks if anything for a mission has been forgotten (e.g. respawn marker).
 
+### placePlayableUnits.sqf
+Places playable units in 3DEN Editor. Sets callsignes, frequencies and loadout variables.
+
 ### plane.sqf
 Spawn pilots into plane (plane takes off) and assigns waypoints (with flyInHeight). The names of the waypoints as well as other stuff are hard coded (```_markerNameWaypoints = ["wp1","wp2"];```)
 
