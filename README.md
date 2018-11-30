@@ -222,6 +222,11 @@ training scripts for mk6 mortar with ACE (3CB BAF mortar)
     2. FAC has different ACE self interactions to show info about target (liner, tip, solution)
     3. Hints are displayed if vehicle is hit/destroyed
 
+### spec_noLoot
+Adds killed event handler to non player units which removes lootable stuff (e.g. magazines).
+1. add "CfgFunctions.hpp" to "CfgFunctions" in description.ext
+2. add "DescriptionExt.hpp" to description.ext (or "CfgEventHandlers.hpp" to "Extended_Init_EventHandlers" in description.ext)
+
 ### spec_presentation
 simple slide show of pictures (e.g. at billboard)
 1. in init.sqf: ```[sign_presentation, numberOfSlides, "pictureDirectory"] call Spec_presentation_fnc_addSlides;``` OR ```[sign_presentationm, numberOfSlides] call Spec_presentation_fnc_addSlides;``` (uses default directory "pictures")
